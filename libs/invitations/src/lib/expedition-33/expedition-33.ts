@@ -30,7 +30,7 @@ export class Expedition33 {
     const body = encodeURIComponent(`
 Bonjour,
 
-Je réponds à votre invitation pour la soirée d'anniversaire sur le thème d'Expedition 33 Claire Obscure du ${
+Je réponds à ton invitation pour la soirée d'anniversaire sur le thème d'Expedition 33 Claire Obscure du ${
       this.partyDate
     }.
 
@@ -38,17 +38,12 @@ Ma réponse : ${response.toUpperCase()}
 
 ${
   response === 'oui'
-    ? "J'ai hâte de célébrer avec vous dans l'univers mystérieux d'Expedition 33 !"
+    ? "J'ai hâte de célébrer avec toi dans l'univers mystérieux d'Expedition 33 !"
     : ''
 }
 
 Nom : [Votre nom]
 Nombre de personnes : [Précisez si vous venez accompagné(e)]
-${
-  response === 'oui'
-    ? 'Idée de déguisement : [Optionnel - votre idée de cosplay]'
-    : ''
-}
 
 Cordialement
     `);
