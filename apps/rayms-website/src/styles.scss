@@ -109,6 +109,15 @@ body {
     Noto Sans, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
 }
 
+/* Fix for mobile devices - remove background-attachment: fixed to prevent white flashing */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+    /* Ensure full coverage on mobile */
+    background-size: 100% 400vh;
+  }
+}
+
 @media print {
   body {
     background: #ffffff !important;
