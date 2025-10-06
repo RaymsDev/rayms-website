@@ -1,1 +1,140 @@
-<p>expedition-33 works!</p>
+<div class="invitation-container">
+  <!-- Pétales de rose d'Expedition 33 -->
+  <div class="rose-petal petal-1"></div>
+  <div class="rose-petal petal-2"></div>
+  <div class="rose-petal petal-3"></div>
+  <div class="rose-petal petal-4"></div>
+  <div class="rose-petal petal-5"></div>
+  <div class="rose-petal petal-6"></div>
+
+  <!-- En-tête avec titre -->
+  <header class="invitation-header">
+    <h1 class="title">
+      <span class="emoji">🎂</span>
+      <span class="gradient-text">Pour ceux qui suivront...</span>
+      <span class="emoji">🎂</span>
+    </h1>
+    <h2 class="subtitle">Anniversaire Expedition 33 - Claire Obscure</h2>
+    <div class="birthday-badge">
+      <span>🎃 Anniversaire d'Halloween 🎃</span>
+    </div>
+  </header>
+
+  <!-- Corps principal de l'invitation -->
+  <main class="invitation-body">
+    <!-- Image de fond Claire Obscure -->
+    <div class="claire-obscure-bg"></div>
+
+    <!-- Message principal -->
+    <div class="main-message">
+      <p class="intro">
+        Vous êtes cordialement invité(e) à célébrer mon anniversaire dans
+        l'univers mystérieux et envoûtant d'<strong
+          >Expedition 33 - Claire Obscure</strong
+        >
+        !
+      </p>
+
+      <p class="birthday-info">
+        🎂 <strong>Mon vrai anniversaire tombe le jour d'Halloween</strong>,
+        c'est l'occasion parfaite pour plonger dans l'atmosphère sombre et
+        mystique du jeu !
+      </p>
+
+      <p class="costume-info">
+        🎭 <strong>Déguisez-vous sur le thème d'Expedition 33</strong> :
+        incarnez les personnages mystérieux, les créatures obscures, ou
+        laissez-vous inspirer par l'esthétique gothique du jeu !
+      </p>
+    </div>
+
+    <!-- Détails de l'événement -->
+    <section class="event-details">
+      <h3>📅 Détails de l'Événement</h3>
+
+      <div class="detail-item"><strong>📅 Date :</strong> {{ partyDate }}</div>
+
+      <div class="detail-item"><strong>🕰️ Heure :</strong> {{ partyTime }}</div>
+
+      <div class="detail-item"><strong>📍 Adresse :</strong> {{ address }}</div>
+    </section>
+
+    <section class="action-buttons">
+      <button
+        class="btn btn-maps"
+        (click)="openGoogleMaps()"
+        title="Voir l'adresse sur Google Maps"
+      >
+        🗺️ Voir sur Google Maps
+      </button>
+
+      <button
+        class="btn btn-cosplay"
+        (click)="openCosplayIdeas()"
+        title="Découvrir des idées de déguisements"
+      >
+        🎨 Idées Cosplay Pinterest
+      </button>
+
+      <button
+        class="btn btn-instagram"
+        (click)="openInstagramCosplay()"
+        title="Voir des cosplays sur Instagram"
+      >
+        📸 Cosplay Instagram
+      </button>
+
+      <!-- Bouton ajouter au calendrier -->
+      <button
+        class="btn btn-calendar"
+        (click)="addToCalendar()"
+        title="Ajouter l'événement à votre agenda"
+      >
+        📅 Ajouter à l'Agenda
+      </button>
+    </section>
+
+    <!-- Section RSVP -->
+    <section class="rsvp-section">
+      <h3>🎯 Répondez à l'Invitation</h3>
+      <p class="rsvp-message">
+        Merci de confirmer votre présence pour que je puisse préparer cette
+        journée épique dans les meilleures conditions !
+      </p>
+
+      <div class="rsvp-buttons">
+        <button
+          class="btn btn-yes"
+          (click)="onRsvp('oui')"
+          title="Je viens à la fête !"
+        >
+          ✅ Oui, je viens !
+        </button>
+
+        <button
+          class="btn btn-maybe"
+          (click)="onRsvp('peut-etre')"
+          title="Je ne suis pas sûr(e)"
+        >
+          🤔 Peut-être
+        </button>
+
+        <button
+          class="btn btn-no"
+          (click)="onRsvp('non')"
+          title="Je ne peux pas venir"
+        >
+          ❌ Non, désolé(e)
+        </button>
+      </div>
+    </section>
+
+    <footer class="invitation-footer">
+      <p class="closing-message">
+        🌙 Préparez-vous à vivre une journée inoubliable <br />
+        dans l'univers sombre et fascinant d'Expedition 33 ! 🌙
+      </p>
+      <p class="signature">Hâte de vous voir déguisés ! 🎭✨</p>
+    </footer>
+  </main>
+</div>

@@ -20,7 +20,7 @@
             "input": "apps/rayms-website/public"
           }
         ],
-        "styles": ["apps/rayms-website/src/styles.css"]
+        "styles": ["apps/rayms-website/src/styles.scss"]
       },
       "configurations": {
         "production": {

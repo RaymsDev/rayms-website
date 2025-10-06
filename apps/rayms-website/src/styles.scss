@@ -1,0 +1,117 @@
+/* You can add global styles to this file, and also import other style files */
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* Global theme tokens and page background */
+:root {
+  /* Card glass background base (consumed by components) */
+  --card: radial-gradient(
+    1200px 800px at 110% -20%,
+    #2b1a4a 0%,
+    #141a3a 55%,
+    #0b1024 100%
+  );
+  /* Text colors */
+  --text: #e5e7eb;
+  --text-dark: #141a3a;
+  --muted: #9aa3b2;
+  /* Accents */
+  --accent: #ffd600;
+  --primary: #0d47a1;
+  /* Page background (fallback used by body) */
+  --page-bg: radial-gradient(
+    1200px 800px at -10% -20%,
+    #1b235a 0%,
+    #0f1636 60%,
+    #0b1024 100%
+  );
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--page-bg, #0b1024);
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+}
+
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111827;
+  }
+}

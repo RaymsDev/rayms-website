@@ -1,3 +1,722 @@
 :host {
   display: block;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.invitation-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(
+      135deg,
+      rgba(26, 26, 46, 0.8) 0%,
+      rgba(22, 33, 62, 0.85) 50%,
+      rgba(15, 52, 96, 0.9) 100%
+    ),
+    url('../../img/expedition33.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+
+  // Arrière-plan principal avec le monolithe
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      // Monolithe central stylisé
+      linear-gradient(
+        0deg,
+        transparent 0%,
+        rgba(75, 85, 135, 0.15) 20%,
+        rgba(95, 105, 155, 0.25) 35%,
+        rgba(115, 125, 175, 0.3) 50%,
+        rgba(95, 105, 155, 0.25) 65%,
+        rgba(75, 85, 135, 0.15) 80%,
+        transparent 100%
+      ),
+      // Effets de lumière mystique
+      radial-gradient(
+          ellipse at 50% 30%,
+          rgba(138, 43, 226, 0.1) 0%,
+          transparent 40%
+        ),
+      radial-gradient(
+        ellipse at 30% 70%,
+        rgba(75, 0, 130, 0.08) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 70% 80%,
+        rgba(25, 25, 112, 0.12) 0%,
+        transparent 40%
+      ),
+      // Motifs géométriques subtils
+      repeating-linear-gradient(
+          45deg,
+          transparent 0px,
+          rgba(255, 255, 255, 0.02) 1px,
+          transparent 2px,
+          transparent 20px
+        );
+    pointer-events: none;
+  }
+
+  // Ajout d'une ombre mystique du monolithe
+  &::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    width: 10%;
+    height: 80%;
+    background: linear-gradient(
+      0deg,
+      transparent 0%,
+      rgba(138, 43, 226, 0.05) 10%,
+      rgba(75, 0, 130, 0.08) 30%,
+      rgba(25, 25, 112, 0.1) 50%,
+      rgba(75, 0, 130, 0.08) 70%,
+      rgba(138, 43, 226, 0.05) 90%,
+      transparent 100%
+    );
+    border-radius: 2px;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.1),
+      inset 0 0 10px rgba(255, 255, 255, 0.02);
+    pointer-events: none;
+    z-index: 0;
+    animation: monolithGlow 4s ease-in-out infinite alternate;
+  }
+
+  // Rose petals from Expedition 33 Claire Obscure - Enhanced Realistic Design
+  .rose-petal {
+    position: absolute;
+    width: 12px;
+    height: 16px;
+    pointer-events: none;
+    z-index: 1;
+    filter: blur(0.2px); // Subtle blur for organic feel
+    opacity: 0; // Initially invisible until animation starts
+    visibility: hidden; // Extra insurance for invisibility
+    transform: translateY(-100px) translateX(0px) rotate(0deg) scale(0); // Start completely hidden above viewport
+
+    // Main petal body - more realistic teardrop shape
+    &::before {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 16px;
+      background:
+        // Highlight gradient for depth
+        linear-gradient(135deg, rgba(255, 182, 193, 0.4) 0%, transparent 30%),
+        // Main petal gradient with realistic colors
+        radial-gradient(
+            ellipse at 30% 20%,
+            rgba(255, 20, 147, 0.9) 0%,
+            rgba(220, 20, 60, 0.85) 25%,
+            rgba(178, 34, 34, 0.8) 50%,
+            rgba(139, 0, 0, 0.7) 75%,
+            rgba(85, 0, 0, 0.3) 100%
+          );
+      border-radius: 80% 15% 55% 50% / 54% 15% 80% 70%;
+      box-shadow: inset 2px 2px 4px rgba(255, 182, 193, 0.3),
+        inset -1px -1px 3px rgba(139, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
+      transform: rotate(-15deg);
+    }
+
+    // Secondary petal layer for texture
+    &::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 1px;
+      width: 10px;
+      height: 12px;
+      background:
+        // Vein-like texture
+        linear-gradient(
+          45deg,
+          transparent 45%,
+          rgba(139, 0, 0, 0.2) 50%,
+          transparent 55%
+        ),
+        // Subtle secondary gradient
+        radial-gradient(
+            ellipse at 40% 30%,
+            rgba(255, 105, 180, 0.3) 0%,
+            rgba(220, 20, 60, 0.2) 40%,
+            transparent 70%
+          );
+      border-radius: 75% 20% 60% 45% / 60% 20% 75% 65%;
+      transform: rotate(5deg);
+    }
+
+    // Different petal positions and realistic animations
+    &.petal-1 {
+      top: 10%;
+      left: 10%;
+      animation: fallingPetal 14s infinite ease-out;
+      animation-delay: 0s;
+      transform-origin: center;
+    }
+
+    &.petal-2 {
+      top: 5%;
+      left: 30%;
+      animation: fallingPetalSlow 18s infinite ease-in-out;
+      animation-delay: 3s;
+      transform-origin: center;
+    }
+
+    &.petal-3 {
+      top: 8%;
+      left: 60%;
+      animation: fallingPetalFast 12s infinite ease-out;
+      animation-delay: 6s;
+      transform-origin: center;
+    }
+
+    &.petal-4 {
+      top: 12%;
+      left: 80%;
+      animation: fallingPetal 16s infinite ease-in-out;
+      animation-delay: 9s;
+      transform-origin: center;
+    }
+
+    &.petal-5 {
+      top: 15%;
+      left: 25%;
+      animation: fallingPetalSlow 20s infinite ease-out;
+      animation-delay: 2s;
+      transform-origin: center;
+    }
+
+    &.petal-6 {
+      top: 6%;
+      left: 75%;
+      animation: fallingPetalFast 11s infinite ease-in-out;
+      animation-delay: 7s;
+      transform-origin: center;
+    }
+  }
+}
+
+.invitation-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+
+  .title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    .gradient-text {
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient 3s ease infinite;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .emoji {
+      font-size: 3rem;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+    }
+  }
+
+  .subtitle {
+    font-size: 1.8rem;
+    color: #e0e0e0;
+    margin: 0.5rem 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  }
+
+  .birthday-badge {
+    display: inline-block;
+    background: linear-gradient(45deg, #ff4757, #ff6348);
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    margin-top: 1rem;
+    box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
+
+    span {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes monolithGlow {
+  0% {
+    opacity: 0.3;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.1),
+      inset 0 0 10px rgba(255, 255, 255, 0.02);
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 30px rgba(138, 43, 226, 0.15),
+      0 0 60px rgba(75, 0, 130, 0.08), inset 0 0 15px rgba(255, 255, 255, 0.04);
+    transform: scaleY(1.02);
+  }
+  100% {
+    opacity: 0.4;
+    box-shadow: 0 0 25px rgba(138, 43, 226, 0.12),
+      inset 0 0 12px rgba(255, 255, 255, 0.03);
+    transform: scaleY(1.01);
+  }
+}
+
+// Animation de particules mystiques
+@keyframes floatingParticles {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.1;
+  }
+  33% {
+    opacity: 0.3;
+  }
+  66% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-20px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+// Enhanced realistic animation for falling rose petals
+@keyframes fallingPetal {
+  0% {
+    transform: translateY(-50px) translateX(0px) rotate(0deg) scale(0.8);
+    opacity: 0;
+    visibility: visible;
+    filter: blur(0.5px);
+  }
+  5% {
+    opacity: 0.8;
+    visibility: visible;
+    filter: blur(0.3px);
+  }
+  15% {
+    transform: translateY(15vh) translateX(8px) rotate(25deg) scale(1);
+    opacity: 1;
+    filter: blur(0.2px);
+  }
+  25% {
+    transform: translateY(25vh) translateX(-3px) rotate(45deg) scale(0.95);
+  }
+  35% {
+    transform: translateY(35vh) translateX(12px) rotate(70deg) scale(1.05);
+  }
+  45% {
+    transform: translateY(45vh) translateX(-8px) rotate(120deg) scale(0.9);
+  }
+  55% {
+    transform: translateY(55vh) translateX(15px) rotate(160deg) scale(1);
+  }
+  65% {
+    transform: translateY(65vh) translateX(-6px) rotate(200deg) scale(0.95);
+  }
+  75% {
+    transform: translateY(75vh) translateX(10px) rotate(250deg) scale(0.85);
+  }
+  85% {
+    transform: translateY(85vh) translateX(-12px) rotate(300deg) scale(0.8);
+    opacity: 0.7;
+    filter: blur(0.4px);
+  }
+  95% {
+    transform: translateY(95vh) translateX(5px) rotate(350deg) scale(0.7);
+    opacity: 0.3;
+    filter: blur(0.6px);
+  }
+  100% {
+    transform: translateY(110vh) translateX(0px) rotate(360deg) scale(0.6);
+    opacity: 0;
+    filter: blur(1px);
+  }
+}
+
+// Additional animation variations for more realism
+@keyframes fallingPetalSlow {
+  0% {
+    transform: translateY(-40px) translateX(0px) rotate(0deg) scale(0.9);
+    opacity: 0;
+    visibility: visible;
+  }
+  8% {
+    opacity: 1;
+    visibility: visible;
+  }
+  20% {
+    transform: translateY(20vh) translateX(-5px) rotate(30deg) scale(1.1);
+  }
+  35% {
+    transform: translateY(35vh) translateX(18px) rotate(80deg) scale(0.85);
+  }
+  50% {
+    transform: translateY(50vh) translateX(-12px) rotate(140deg) scale(1);
+  }
+  65% {
+    transform: translateY(65vh) translateX(20px) rotate(200deg) scale(0.9);
+  }
+  80% {
+    transform: translateY(80vh) translateX(-8px) rotate(280deg) scale(0.8);
+  }
+  100% {
+    transform: translateY(115vh) translateX(3px) rotate(360deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes fallingPetalFast {
+  0% {
+    transform: translateY(-30px) translateX(0px) rotate(0deg) scale(0.7);
+    opacity: 0;
+    visibility: visible;
+  }
+  12% {
+    opacity: 1;
+    visibility: visible;
+  }
+  30% {
+    transform: translateY(30vh) translateX(6px) rotate(60deg) scale(1);
+  }
+  50% {
+    transform: translateY(50vh) translateX(-10px) rotate(150deg) scale(0.9);
+  }
+  70% {
+    transform: translateY(70vh) translateX(14px) rotate(250deg) scale(0.8);
+  }
+  100% {
+    transform: translateY(105vh) translateX(-2px) rotate(390deg) scale(0.6);
+    opacity: 0;
+  }
+}
+
+.invitation-body {
+  position: relative;
+  z-index: 1;
+}
+
+// Effets mystiques optionnels pour le main (maintenant que l'image est sur le container)
+.claire-obscure-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  border-radius: 15px;
+
+  // Effet mystique avec des reflets violets légers
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at 30% 20%,
+        rgba(138, 43, 226, 0.05) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 70% 80%,
+        rgba(75, 0, 130, 0.04) 0%,
+        transparent 40%
+      );
+    border-radius: 15px;
+    animation: mysticalGlow 8s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes mysticalGlow {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.main-message {
+  margin-bottom: 2rem;
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: justify;
+  }
+
+  .intro {
+    font-size: 1.2rem;
+    color: #f5f5f5;
+    font-weight: 500;
+  }
+
+  .birthday-info {
+    background: rgba(255, 165, 0, 0.1);
+    border-left: 4px solid #ffa500;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 1.5rem 0;
+  }
+
+  .costume-info {
+    background: rgba(138, 43, 226, 0.1);
+    border-left: 4px solid #8a2be2;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 1.5rem 0;
+  }
+}
+
+.event-details {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  h3 {
+    color: #4ecdc4;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+
+  .detail-item {
+    margin: 0.8rem 0;
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    strong {
+      color: #96ceb4;
+    }
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.rsvp-section {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h3 {
+    color: #ff6b6b;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+
+  .rsvp-message {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+  }
+}
+
+.rsvp-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 150px;
+  justify-content: center;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-maps {
+  background: linear-gradient(45deg, #4285f4, #34a853);
+  color: white;
+
+  &:hover {
+    background: linear-gradient(45deg, #3367d6, #2d8e47);
+  }
+}
+
+.btn-cosplay {
+  background: linear-gradient(45deg, #bd081c, #e60023);
+  color: white;
+
+  &:hover {
+    background: linear-gradient(45deg, #a0071a, #c8001f);
+  }
+}
+
+.btn-instagram {
+  background: linear-gradient(45deg, #e1306c, #fd1d1d, #fcb045);
+  color: white;
+
+  &:hover {
+    background: linear-gradient(45deg, #c13584, #e1306c, #fd1d1d);
+  }
+}
+
+.btn-calendar {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+
+  &:hover {
+    background: linear-gradient(45deg, #5a6fd8, #6a4190);
+  }
+}
+
+.btn-yes {
+  background: linear-gradient(45deg, #27ae60, #2ecc71);
+  color: white;
+
+  &:hover {
+    background: linear-gradient(45deg, #229954, #28b463);
+  }
+}
+
+.btn-maybe {
+  background: linear-gradient(45deg, #f39c12, #e67e22);
+  color: white;
+
+  &:hover {
+    background: linear-gradient(45deg, #d68910, #ca6f1e);
+  }
+}
+
+.btn-no {
+  background: linear-gradient(45deg, #e74c3c, #c0392b);
+  color: white;
+
+  &:hover {
+    background: linear-gradient(45deg, #cb4335, #a93226);
+  }
+}
+
+.invitation-footer {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  .closing-message {
+    font-size: 1.2rem;
+    color: #4ecdc4;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .signature {
+    font-size: 1.1rem;
+    color: #96ceb4;
+    font-style: italic;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .invitation-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .invitation-header .title {
+    font-size: 2.2rem;
+  }
+
+  .invitation-header .subtitle {
+    font-size: 1.4rem;
+  }
+
+  .action-buttons,
+  .rsvp-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+// Animation subtile pour l'entrée
+.invitation-container {
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
