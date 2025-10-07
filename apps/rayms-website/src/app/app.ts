@@ -4,6 +4,7 @@ import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { MetaService } from './services/meta.service';
 import { StructuredDataService } from './services/structured-data.service';
+import { RouterDebugService } from './services/router-debug.service';
 
 @Component({
   imports: [RouterModule, CommonModule],
@@ -18,6 +19,7 @@ export class App implements OnInit {
   private router = inject(Router);
   private metaService = inject(MetaService);
   private structuredDataService = inject(StructuredDataService);
+  private routerDebugService = inject(RouterDebugService);
 
   // Mobile secret access properties
   private tapCount = 0;
