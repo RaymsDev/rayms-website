@@ -1,0 +1,37 @@
+# Allow Facebook crawler
+<RequireAll>
+    Require all granted
+    Require user-agent facebookexternalhit
+    Require user-agent Facebot
+</RequireAll>
+
+# Allow other social media crawlers
+<RequireAll>
+    Require all granted
+    Require user-agent Twitterbot
+    Require user-agent LinkedInBot
+    Require user-agent WhatsApp
+    Require user-agent Applebot
+</RequireAll>
+
+# Enable CORS for Open Graph images
+<FilesMatch "\.(jpg|jpeg|png|gif|svg|webp)$">
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+</FilesMatch>
+
+# Ensure robots.txt is accessible
+<Files "robots.txt">
+    Allow from all
+</Files>
+
+# Ensure sitemap.xml is accessible
+<Files "sitemap.xml">
+    Allow from all
+</Files>
+
+# Security headers
+Header always set X-Content-Type-Options nosniff
+Header always set X-Frame-Options DENY
+Header always set X-XSS-Protection "1; mode=block"
