@@ -7,13 +7,13 @@ export const appRoutes: Route[] = [
       import('@rayms-website/invitations').then((m) => m.Expedition33),
   },
   {
-    path: '',
+    path: 'home',
     pathMatch: 'full',
     loadComponent: () =>
       import('./components/home/home.component').then((m) => m.HomeComponent),
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'expedition-33',
   },
 ];
