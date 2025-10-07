@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, inject } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { Router, RouterModule, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { MetaService } from './services/meta.service';
+import { StructuredDataService } from './services/structured-data.service';
 
 @Component({
   imports: [RouterModule, CommonModule],
@@ -8,11 +11,13 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
+export class App implements OnInit {
   protected title = 'rayms-website';
   protected showRouteNavigator = false;
   protected availableRoutes: string[] = [];
   private router = inject(Router);
+  private metaService = inject(MetaService);
+  private structuredDataService = inject(StructuredDataService);
 
   // Mobile secret access properties
   private tapCount = 0;
@@ -22,6 +27,27 @@ export class App {
 
   constructor() {
     this.loadAvailableRoutes();
+  }
+
+  ngOnInit() {
+    // Set default meta tags for home page
+    this.metaService.setHomeMeta();
+
+    // Listen to route changes to update meta tags
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.updateMetaForRoute(event.url);
+      });
+  }
+
+  private updateMetaForRoute(url: string) {
+    if (url.includes('expedition-33')) {
+      this.metaService.setExpedition33Meta();
+      this.structuredDataService.addEventStructuredData();
+    } else {
+      this.metaService.setHomeMeta();
+    }
   }
 
   @HostListener('document:keydown', ['$event'])

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media Preview Tester</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.6;
+      }
+      .preview {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        background: #f9f9f9;
+      }
+      .og-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        margin: 10px 0;
+      }
+      .url-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin: 10px 0;
+      }
+      button {
+        background: #0066cc;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #0052a3;
+      }
+      .meta-info {
+        background: white;
+        padding: 15px;
+        border-radius: 4px;
+        margin: 10px 0;
+      }
+      .meta-info h3 {
+        margin-top: 0;
+        color: #0066cc;
+      }
+      code {
+        background: #f0f0f0;
+        padding: 2px 4px;
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🔍 Social Media Preview Tester</h1>
+    <p>
+      Test how your Rayms Lab website will appear when shared on social media
+      platforms like Messenger, Facebook, Twitter, etc.
+    </p>
+
+    <div>
+      <label for="url">Enter your website URL:</label>
+      <input
+        type="text"
+        id="url"
+        class="url-input"
+        value="https://remy.laffuge.fr/"
+        placeholder="https://your-domain.com"
+      />
+      <button onclick="testPreview()">Test Preview</button>
+    </div>
+
+    <div class="preview">
+      <h2>📱 Social Media Preview</h2>
+      <div class="meta-info">
+        <h3>Rayms Lab - Interactive Adventures & Expeditions</h3>
+        <p>
+          Interactive adventures and expeditions platform offering unique
+          digital experiences.
+        </p>
+        <img
+          src="og-image.jpg"
+          alt="Open Graph Image"
+          class="og-image"
+          onerror="this.style.display='none'"
+        />
+        <p><small>🌐 remy.laffuge.fr</small></p>
+      </div>
+    </div>
+
+    <div class="preview">
+      <h2>🔧 Testing Tools</h2>
+      <p>Use these tools to test your social media previews:</p>
+      <ul>
+        <li>
+          <a href="https://developers.facebook.com/tools/debug/" target="_blank"
+            >Facebook Sharing Debugger</a
+          >
+          - Test Facebook & Messenger previews
+        </li>
+        <li>
+          <a href="https://cards-dev.twitter.com/validator" target="_blank"
+            >Twitter Card Validator</a
+          >
+          - Test Twitter previews
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/post-inspector/" target="_blank"
+            >LinkedIn Post Inspector</a
+          >
+          - Test LinkedIn previews
+        </li>
+        <li>
+          <a href="https://metatags.io/" target="_blank">Meta Tags Checker</a> -
+          General meta tags testing
+        </li>
+      </ul>
+    </div>
+
+    <div class="preview">
+      <h2>📋 Meta Tags Implemented</h2>
+      <ul>
+        <li><code>og:title</code> - Page title for social sharing</li>
+        <li><code>og:description</code> - Description shown in previews</li>
+        <li><code>og:image</code> - Preview image (1200x630px recommended)</li>
+        <li><code>og:url</code> - Canonical URL of the page</li>
+        <li><code>og:type</code> - Type of content (website/article)</li>
+        <li><code>twitter:card</code> - Twitter card type</li>
+        <li><code>twitter:title</code> - Twitter-specific title</li>
+        <li><code>twitter:description</code> - Twitter-specific description</li>
+        <li><code>twitter:image</code> - Twitter-specific image</li>
+      </ul>
+    </div>
+
+    <script>
+      function testPreview() {
+        const url = document.getElementById('url').value;
+        if (url) {
+          window.open(
+            `https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(
+              url
+            )}`,
+            '_blank'
+          );
+        }
+      }
+    </script>
+  </body>
+</html>
