@@ -1,5 +1,16 @@
 <router-outlet></router-outlet>
 
+<!-- Hidden tap area for mobile secret access (top-left corner) -->
+<div 
+  class="secret-tap-area" 
+  (click)="onSecretAreaTap($event)"
+  (touchend)="onSecretAreaTap($event)"
+  (keydown)="$event.key === 'Enter' && onSecretAreaTap($event)"
+  tabindex="-1"
+  role="button"
+  aria-label="Hidden developer access"
+></div>
+
 @if(showRouteNavigator){
 <div
   class="route-navigator-overlay"
@@ -29,10 +40,11 @@
         }
       </div>
       <div class="shortcut-hint">
-        <small
-          >Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> to toggle |
-          <kbd>ESC</kbd> to close</small
-        >
+        <small>
+          Desktop: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | 
+          Mobile: 5 quick taps on top-left corner | 
+          <kbd>ESC</kbd> to close
+        </small>
       </div>
     </div>
   </div>

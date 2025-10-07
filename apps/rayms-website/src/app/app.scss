@@ -1,3 +1,16 @@
+/* Secret tap area for mobile access */
+.secret-tap-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  z-index: 9999;
+  background: transparent;
+  /* Invisible but accessible */
+  opacity: 0;
+}
+
 /* Hidden Route Navigator Styles */
 .route-navigator-overlay {
   position: fixed;
