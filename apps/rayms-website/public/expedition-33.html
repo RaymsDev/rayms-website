@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Expedition 33 - Rayms Lab</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Basic Meta Tags -->
+    <meta
+      name="description"
+      content="À l'heure où j'écris ces lignes, je n'ai encore que 32 ans... Rejoignez avec moi l'expedition 33 pour une aventure interactive exclusive pleine de mystères et de souvenirs inoubliables."
+    />
+    <meta
+      name="keywords"
+      content="Rayms Lab, expedition 33, aventure interactive, mystères, souvenirs"
+    />
+    <meta name="author" content="Rayms Lab" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://remy.laffuge.fr/expedition-33" />
+    <meta property="og:title" content="Expedition 33 - Rayms Lab" />
+    <meta
+      property="og:description"
+      content="À l'heure où j'écris ces lignes, je n'ai encore que 32 ans... Rejoignez avec moi l'expedition 33 pour une aventure interactive exclusive pleine de mystères et de souvenirs inoubliables."
+    />
+    <meta property="og:image" content="https://remy.laffuge.fr/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Rayms Lab" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://remy.laffuge.fr/expedition-33"
+    />
+    <meta property="twitter:title" content="Expedition 33 - Rayms Lab" />
+    <meta
+      property="twitter:description"
+      content="À l'heure où j'écris ces lignes, je n'ai encore que 32 ans... Rejoignez avec moi l'expedition 33 pour une aventure interactive exclusive pleine de mystères et de souvenirs inoubliables."
+    />
+    <meta
+      property="twitter:image"
+      content="https://remy.laffuge.fr/og-image.jpg"
+    />
+
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#000000" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <link rel="canonical" href="https://remy.laffuge.fr/expedition-33" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.ico" />
+
+    <!-- Redirect to main SPA after social crawlers have the meta tags -->
+    <script>
+      // Only redirect for real browsers, not crawlers
+      if (
+        window.navigator &&
+        !navigator.userAgent.match(
+          /facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegram/i
+        )
+      ) {
+        window.location.replace('/');
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Fallback content for crawlers -->
+    <div
+      id="crawler-content"
+      style="
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+      "
+    >
+      <h1>Expedition 33 - Rayms Lab</h1>
+      <p>
+        À l'heure où j'écris ces lignes, je n'ai encore que 32 ans... Rejoignez
+        avec moi l'expedition 33 pour une aventure interactive exclusive pleine
+        de mystères et de souvenirs inoubliables.
+      </p>
+      <p><a href="/">Découvrir Rayms Lab</a></p>
+    </div>
+
+    <!-- Angular App Root (hidden for crawlers) -->
+    <app-root style="display: none"></app-root>
+
+    <!-- Load Angular only for real browsers -->
+    <script>
+      if (
+        window.navigator &&
+        !navigator.userAgent.match(
+          /facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegram/i
+        )
+      ) {
+        document.getElementById('crawler-content').style.display = 'none';
+        document.querySelector('app-root').style.display = 'block';
+
+        // Load your main Angular bundle
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = '/main.js'; // Adjust this path based on your build output
+        document.head.appendChild(script);
+      }
+    </script>
+  </body>
+</html>
