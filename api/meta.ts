@@ -22,7 +22,7 @@ const getPageMeta = (path: string): PageMeta => {
       return {
         title: `Expedition 33 - ${siteConfig.name}`,
         description: `À l'heure où j'écris ces lignes, je n'ai encore que 32 ans... Rejoignez avec moi l'expedition 33 pour une aventure interactive exclusive pleine de mystères et de souvenirs inoubliables.`,
-        image: siteConfig.ogImage,
+        image: `${siteConfig.url}/expedition33.webp`,
         url: `${siteConfig.url}/expedition-33`,
         type: 'website',
       };
@@ -109,7 +109,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px;">
       <h1>${meta.title}</h1>
       <p>${meta.description}</p>
-      <p><a href="${siteConfig.url}">Visit ${siteConfig.name}</a></p>
+      <p><a href="${siteConfig.url}${path}">Visit ${meta.title}</a></p>
     </div>
   </body>
 </html>`;
@@ -117,7 +117,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     res.setHeader('Content-Type', 'text/html');
     res.status(200).send(html);
   } else {
-    // Redirect browsers to the main SPA
+    // This shouldn't happen for browsers since Vercel should route them to index.html directly
     res.writeHead(302, { Location: '/' });
     res.end();
   }

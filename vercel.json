@@ -46,6 +46,10 @@
       ]
     },
     {
+      "source": "/expedition-33",
+      "destination": "/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
