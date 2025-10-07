@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nx serve rayms-website",
     "build": "nx build rayms-website",
-    "build:prod": "nx build rayms-website --configuration=production"
+    "build:prod": "nx build rayms-website --configuration=production",
+    "test": "nx test rayms-website"
   },
   "private": true,
   "dependencies": {
