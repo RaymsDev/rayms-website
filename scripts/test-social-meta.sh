@@ -25,12 +25,18 @@ test_page_meta() {
     # Fetch page with crawler user agent
     response=$(curl -s -H "User-Agent: $user_agent" "$url")
 
-    # Extract and display key meta tags
-    echo "Title: $(echo "$response" | grep -oP '<title[^>]*>\K[^<]+' || echo 'Not found')"
-    echo "Description: $(echo "$response" | grep -oP '<meta[^>]*name=["\']description["\'][^>]*content=["\'][^"\']*' | grep -oP 'content=["\'][^"\']*' | sed 's/content=["\']//g' || echo 'Not found')"
-    echo "OG Title: $(echo "$response" | grep -oP '<meta[^>]*property=["\']og:title["\'][^>]*content=["\'][^"\']*' | grep -oP 'content=["\'][^"\']*' | sed 's/content=["\']//g' || echo 'Not found')"
-    echo "OG Description: $(echo "$response" | grep -oP '<meta[^>]*property=["\']og:description["\'][^>]*content=["\'][^"\']*' | grep -oP 'content=["\'][^"\']*' | sed 's/content=["\']//g' || echo 'Not found')"
-    echo "OG Image: $(echo "$response" | grep -oP '<meta[^>]*property=["\']og:image["\'][^>]*content=["\'][^"\']*' | grep -oP 'content=["\'][^"\']*' | sed 's/content=["\']//g' || echo 'Not found')"
+    # Extract and display key meta tags using simpler patterns
+    title=$(echo "$response" | grep -i '<title' | sed 's/<title[^>]*>//i' | sed 's/<\/title>.*//i' | head -n1)
+    description=$(echo "$response" | grep -i 'name="description"' | sed 's/.*content="//i' | sed 's/".*//' | head -n1)
+    og_title=$(echo "$response" | grep -i 'property="og:title"' | sed 's/.*content="//i' | sed 's/".*//' | head -n1)
+    og_description=$(echo "$response" | grep -i 'property="og:description"' | sed 's/.*content="//i' | sed 's/".*//' | head -n1)
+    og_image=$(echo "$response" | grep -i 'property="og:image"' | sed 's/.*content="//i' | sed 's/".*//' | head -n1)
+    
+    echo "Title: ${title:-'Not found'}"
+    echo "Description: ${description:-'Not found'}"
+    echo "OG Title: ${og_title:-'Not found'}"
+    echo "OG Description: ${og_description:-'Not found'}"
+    echo "OG Image: ${og_image:-'Not found'}"
 
     # Save full response for debugging
     echo "$response" > "$TEMP_DIR/${page_name// /_}_response.html"

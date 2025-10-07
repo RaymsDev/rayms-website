@@ -73,6 +73,14 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   const userAgent = req.headers['user-agent'] || '';
   const path = (req.query.path as string) || '/';
 
+  // Debug logging
+  console.log('Meta API called with:', {
+    userAgent,
+    path,
+    query: req.query,
+    url: req.url
+  });
+
   // Check if it's a social media crawler
   const isCrawler =
     /facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegram|crawler|bot|spider/i.test(

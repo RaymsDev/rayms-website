@@ -24,8 +24,19 @@
   ],
   "rewrites": [
     {
-      "source": "/(expedition-33|invitations/.*)",
-      "destination": "/api/meta?path=$1",
+      "source": "/expedition-33",
+      "destination": "/api/meta?path=/expedition-33",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegram|crawler|bot|spider).*"
+        }
+      ]
+    },
+    {
+      "source": "/invitations/(.*)",
+      "destination": "/api/meta?path=/invitations/$1",
       "has": [
         {
           "type": "header",
