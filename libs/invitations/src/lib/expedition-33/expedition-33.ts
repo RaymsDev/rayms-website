@@ -30,7 +30,7 @@ export class Expedition33 {
     const body = encodeURIComponent(`
 Bonjour,
 
-Je réponds à ton invitation pour la soirée d'anniversaire sur le thème d'Expedition 33 Claire Obscure du ${
+Je réponds à ton invitation pour le déjeuner d'anniversaire sur le thème d'Expedition 33 Claire Obscure du ${
       this.partyDate
     }.
 
