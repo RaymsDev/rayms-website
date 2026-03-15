@@ -14,6 +14,6 @@ export const appRoutes: Route[] = [
   },
   {
     path: '**',
-    redirectTo: 'expedition-33',
+    redirectTo: 'home',
   },
 ];
