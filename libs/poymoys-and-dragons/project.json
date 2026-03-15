@@ -1,0 +1,13 @@
+{
+  "name": "poymoys-and-dragons",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/poymoys-and-dragons/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["dnd"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

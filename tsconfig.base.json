@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@rayms-website/invitations": ["libs/invitations/src/index.ts"]
+      "@rayms-website/invitations": ["libs/invitations/src/index.ts"],
+      "@rayms-website/poymoys-and-dragons": [
+        "libs/poymoys-and-dragons/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
