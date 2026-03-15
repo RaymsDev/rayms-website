@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { StructuredDataService } from './services/structured-data.service';
 import { RouterDebugService } from './services/router-debug.service';
 
 @Component({
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',
