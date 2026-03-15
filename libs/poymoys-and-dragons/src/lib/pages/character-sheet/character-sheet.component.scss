@@ -1,0 +1,541 @@
+/* character-sheet.component.scss */
+/* Three visual themes: parchment (Zippi), rose (Sœur Moy), dark (Merlin) */
+
+// ── Theme definitions ────────────────────────────────────────────
+// Each map holds all the color tokens for one theme.
+
+$themes: (
+  'parchment': (
+    page-bg:          #1a0f05,
+    sheet-bg:         #f4e8c1,
+    header-bg:        #2c1810,
+    accent:           #c8940a,
+    accent-light:     #e8b420,
+    accent-dark:      #6b4c2a,
+    text:             #2c1810,
+    text-mid:         #4a2e1a,
+    text-dim:         #6b4c2a,
+    border:           #d4a870,
+    border-light:     #e8d0a0,
+    spell-header-bg:  #1a3a6b,
+    spell-text:       #ffffff,
+    tip-bg:           #2c1810,
+    tip-text:         #f4e8c1,
+    tip-accent:       #e8b420,
+  ),
+  'rose': (
+    page-bg:          #1a0810,
+    sheet-bg:         #fdf6ee,
+    header-bg:        #2a0a18,
+    accent:           #c8748a,
+    accent-light:     #e8b0c0,
+    accent-dark:      #8b3a52,
+    text:             #2a1a20,
+    text-mid:         #5a3848,
+    text-dim:         #8a6878,
+    border:           #d4a8b8,
+    border-light:     #ecd8e0,
+    spell-header-bg:  #e8c0d0,
+    spell-text:       #2a1a20,
+    tip-bg:           #2a0818,
+    tip-text:         #f5d0dc,
+    tip-accent:       #e8b830,
+  ),
+  'dark': (
+    page-bg:          #0a0a0f,
+    sheet-bg:         #1a1a2a,
+    header-bg:        #0f0f18,
+    accent:           #c8a030,
+    accent-light:     #e8c050,
+    accent-dark:      #8a6820,
+    text:             #e8e0c8,
+    text-mid:         #b8a898,
+    text-dim:         #888070,
+    border:           #3a3028,
+    border-light:     #2a2820,
+    spell-header-bg:  #252535,
+    spell-text:       #e8c050,
+    tip-bg:           #0f0f18,
+    tip-text:         #e8c050,
+    tip-accent:       #e8c050,
+  ),
+);
+
+// ── Mixin: apply all token-based rules for one theme ─────────────
+@mixin apply-theme($name, $tokens) {
+
+  // Page background is set on the parent container
+  .sheet-page { background: map-get($tokens, page-bg); }
+
+  .sheet--#{$name} {
+    background: map-get($tokens, sheet-bg);
+    border-color: map-get($tokens, border);
+    color: map-get($tokens, text);
+
+    // Header
+    .sheet-header {
+      background: map-get($tokens, header-bg);
+      border-bottom-color: map-get($tokens, accent);
+    }
+    .sheet-header__label   { color: map-get($tokens, accent); }
+    .sheet-header__name    { color: map-get($tokens, accent-light); text-shadow: 2px 2px 0 map-get($tokens, accent-dark); }
+    .sheet-header__epithet { color: map-get($tokens, accent-light); opacity: 0.7; }
+
+    // Tags
+    .character-tag--default { border-color: rgba(map-get($tokens, accent), 0.5);       color: map-get($tokens, accent-light); }
+    .character-tag--gold    { border-color: #e8b420;                                   color: #e8b420; }
+    .character-tag--divine  { border-color: #9070c0;                                   color: #c0a0e0; }
+    .character-tag--green   { border-color: #406040;                                   color: #80c080; }
+
+    // Portrait
+    .portrait          { border-color: map-get($tokens, border); background: rgba(map-get($tokens, accent), 0.08); }
+    .portrait__caption { color: map-get($tokens, accent-dark); }
+
+    // Identity fields
+    .id-field              { background: rgba(map-get($tokens, accent), 0.04); border-color: map-get($tokens, border-light); border-bottom-color: map-get($tokens, border); }
+    .id-field__label       { color: map-get($tokens, text-dim); }
+    .id-field__value       { color: map-get($tokens, text); }
+    .id-field__value--accent { color: map-get($tokens, accent-dark); font-weight: 700; }
+    .id-field__value--small  { color: map-get($tokens, text-mid); font-size: 12px; }
+
+    // Lore
+    .lore-box { border-left-color: map-get($tokens, accent); background: rgba(map-get($tokens, accent), 0.05); color: map-get($tokens, text-mid); }
+
+    // Divider & section titles
+    .divider       { color: map-get($tokens, accent); }
+    .section-title { color: map-get($tokens, accent-dark); border-bottom-color: map-get($tokens, border-light); &::before { color: map-get($tokens, accent); } }
+
+    // Ability scores
+    .ability-box           { border-color: map-get($tokens, border); background: rgba(map-get($tokens, accent), 0.05); }
+    .ability-box--primary  { border-color: map-get($tokens, accent); background: rgba(map-get($tokens, accent), 0.12); .ability-box__score { color: map-get($tokens, accent-dark); } .ability-box__modifier { background: map-get($tokens, accent-dark); } }
+    .ability-box__label    { color: map-get($tokens, text-dim); }
+    .ability-box__score    { color: map-get($tokens, text); }
+    .ability-box__modifier { background: map-get($tokens, text); color: map-get($tokens, sheet-bg); }
+
+    // Saving throws
+    .save-badge             { border-color: map-get($tokens, border-light); background: rgba(map-get($tokens, accent), 0.04); }
+    .save-badge--proficient { border-color: map-get($tokens, accent); background: rgba(map-get($tokens, accent), 0.1); .save-badge__value { color: map-get($tokens, accent-dark); } }
+    .save-badge__label      { color: map-get($tokens, text-dim); }
+    .save-badge__value      { color: map-get($tokens, text); }
+
+    // Combat stats
+    .combat-stat          { border-color: map-get($tokens, border-light); background: rgba(map-get($tokens, accent), 0.03); }
+    .combat-stat--hp      { border-color: map-get($tokens, accent); background: rgba(map-get($tokens, accent), 0.08); .combat-stat__value { color: map-get($tokens, accent-dark); } }
+    .combat-stat__label   { color: map-get($tokens, text-dim); }
+    .combat-stat__value   { color: map-get($tokens, text); }
+    .hp-bubble            { border-color: map-get($tokens, accent); }
+    .hp-bubble--filled    { background: map-get($tokens, accent); }
+
+    // Spell sections
+    .spell-section-header        { color: map-get($tokens, text-dim); border-bottom-color: map-get($tokens, border-light); }
+    .spell-card                  { border-color: map-get($tokens, border-light); background: rgba(map-get($tokens, accent), 0.02); }
+    .spell-card__header--default { background: map-get($tokens, spell-header-bg); }
+    .spell-card__header--gold    { background: linear-gradient(90deg, #b88800, #d4a820); }
+    .spell-card__header--red     { background: linear-gradient(90deg, #7a2030, #a03050); }
+    .spell-card__name            { color: map-get($tokens, spell-text); }
+    .spell-card__badge--default  { background: map-get($tokens, text); color: map-get($tokens, sheet-bg); }
+    .spell-card__badge--gold     { background: #e8c020; color: #2a1a00; }
+    .spell-card__badge--red      { background: #8b1a1a; color: #fde8e8; }
+    .spell-meta__item            { color: map-get($tokens, text-dim); strong { color: map-get($tokens, accent-dark); } }
+    .spell-card__desc            { color: map-get($tokens, text-mid); }
+
+    // Traits
+    .trait-item__name { color: map-get($tokens, text); }
+    .trait-item__desc { color: map-get($tokens, text-mid); }
+
+    // Equipment
+    .equipment-list li         { border-bottom-color: map-get($tokens, border-light); color: map-get($tokens, text-mid); }
+    .equipment-list__item--magical { color: map-get($tokens, accent-dark) !important; }
+
+    // Skills
+    .skill-row__pip--proficient { background: map-get($tokens, accent); border-color: map-get($tokens, accent); }
+    .skill-row__pip             { border-color: map-get($tokens, border); }
+    .skill-row__bonus           { color: map-get($tokens, text); }
+
+    // Roleplay
+    .roleplay-box       { border-color: map-get($tokens, border-light); background: rgba(map-get($tokens, accent), 0.03); }
+    .roleplay-box__label { color: map-get($tokens, text-dim); }
+    .roleplay-box__text  { color: map-get($tokens, text-mid); }
+
+    // Tips
+    .tips-box        { background: map-get($tokens, tip-bg); }
+    .tips-box__title { color: map-get($tokens, tip-accent); }
+    .tips-box__item  { color: rgba(map-get($tokens, tip-text), 0.85); }
+    .tips-box__bullet { color: map-get($tokens, tip-accent); }
+
+    // Footer
+    .sheet-footer { color: map-get($tokens, text-dim); border-top-color: map-get($tokens, border-light); }
+  }
+}
+
+// Generate all three themes
+@each $name, $tokens in $themes {
+  @include apply-theme($name, $tokens);
+}
+
+// ── Component-level layout (theme-independent) ───────────────────
+
+.sheet-page {
+  min-height: 100vh;
+  padding: 20px;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.breadcrumb {
+  max-width: 860px;
+  margin: 0 auto 16px;
+
+  a {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: rgba(200,148,10,0.7);
+    text-decoration: none;
+    &:hover { color: #e8b420; }
+  }
+}
+
+.sheet {
+  max-width: 860px;
+  margin: 0 auto;
+  border: 1px solid;
+  box-shadow: 0 0 0 6px #000, 0 40px 100px rgba(0,0,0,0.8);
+  overflow: hidden;
+}
+
+.not-found {
+  max-width: 400px;
+  margin: 100px auto;
+  text-align: center;
+  color: #e8b420;
+  a { color: #c8940a; }
+}
+
+// Sheet header
+.sheet-header {
+  padding: 24px 36px 20px;
+  text-align: center;
+  border-bottom: 3px solid;
+
+  &__label   { font-size: 9px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 8px; }
+  &__name    { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900; letter-spacing: 2px; line-height: 1.1; }
+  &__epithet { font-style: italic; font-size: 0.9rem; margin-top: 6px; }
+  &__tags    { display: flex; justify-content: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+}
+
+// Character tag
+.character-tag {
+  border: 1px solid;
+  padding: 2px 12px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.sheet-body { padding: 26px 28px 20px; }
+
+.divider { text-align: center; font-size: 14px; letter-spacing: 10px; margin: 6px 0 18px; opacity: 0.5; }
+
+.section-title {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  border-bottom: 1px solid;
+  padding-bottom: 5px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  &::before { content: '✦'; font-size: 10px; }
+}
+
+// Identity grid
+.identity-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 18px;
+  margin-bottom: 18px;
+  @media (max-width: 600px) { grid-template-columns: 1fr; }
+}
+
+.portrait {
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 10px;
+
+  &__emoji {
+    font-size: 64px;
+    line-height: 1;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  &__caption {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    text-align: center;
+    line-height: 1.7;
+    white-space: pre-line;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &__row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+}
+
+.id-field {
+  border: 1px solid;
+  border-bottom-width: 2px;
+  padding: 5px 10px;
+
+  &--full { grid-column: 1 / -1; }
+  &__label { font-size: 7px; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 2px; }
+  &__value { font-size: 14px; font-weight: 600; }
+}
+
+.lore-box {
+  border-left: 3px solid;
+  padding: 8px 12px;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+// Ability scores
+.ability-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+  @media (max-width: 500px) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.ability-box {
+  text-align: center;
+  border: 1px solid;
+  padding: 7px 4px 5px;
+
+  &__label    { font-size: 7px; letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: 3px; }
+  &__score    { font-size: 23px; font-weight: 700; line-height: 1; display: block; }
+  &__modifier { display: inline-block; font-size: 10px; font-weight: 700; padding: 1px 7px; margin-top: 3px; }
+}
+
+// Saving throws
+.saving-throws {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.save-badge {
+  border: 1px solid;
+  padding: 3px 9px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  &__label { font-size: 7px; letter-spacing: 1px; text-transform: uppercase; }
+  &__value { font-size: 13px; font-weight: 700; }
+}
+
+// Combat row
+.combat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+  margin-bottom: 14px;
+  @media (max-width: 500px) { grid-template-columns: repeat(2, 1fr); }
+}
+
+.combat-stat {
+  text-align: center;
+  padding: 7px 6px;
+  border: 1px solid;
+
+  &__label { font-size: 7px; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 2px; }
+  &__value { font-size: 25px; font-weight: 700; display: block; line-height: 1; }
+}
+
+.hp-tracker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.hp-bubble {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+// Two-column layout
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 18px;
+  @media (max-width: 700px) { grid-template-columns: 1fr; }
+}
+
+// Spell sections
+.spell-section-header {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-bottom: 1px solid;
+  padding-bottom: 4px;
+  margin: 10px 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__title { flex: 1; }
+}
+
+.slot-tracker { display: flex; gap: 4px; }
+
+.slot-pip {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 2px solid;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.spell-card {
+  border: 1px solid;
+  margin-bottom: 6px;
+  overflow: hidden;
+
+  &__header {
+    padding: 5px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  &__name  { font-size: 11px; font-weight: 600; }
+  &__badge { font-size: 7px; padding: 2px 7px; letter-spacing: 1px; font-weight: 700; }
+  &__body  { padding: 5px 12px 7px; }
+  &__desc  { font-size: 12px; line-height: 1.4; font-style: italic; }
+}
+
+.spell-meta {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 3px;
+  flex-wrap: wrap;
+
+  &__item { font-size: 9px; strong { font-weight: 700; } }
+}
+
+// Traits
+.trait-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+  align-items: flex-start;
+
+  &__icon { font-size: 16px; flex-shrink: 0; }
+  &__name { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
+  &__desc { font-size: 12px; line-height: 1.4; }
+}
+
+// Equipment
+.equipment-list {
+  list-style: none;
+  padding: 0;
+
+  li {
+    padding: 4px 0;
+    border-bottom: 1px dashed;
+    font-size: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+    &:last-child { border-bottom: none; }
+  }
+
+  &__detail { opacity: 0.7; font-style: italic; }
+}
+
+// Skills
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 2px 0;
+
+  &__pip {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1.5px solid;
+    flex-shrink: 0;
+  }
+
+  &__bonus { margin-left: auto; font-size: 11px; font-weight: 600; }
+}
+
+// Roleplay
+.roleplay-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-bottom: 16px;
+  @media (max-width: 500px) { grid-template-columns: 1fr; }
+}
+
+.roleplay-box {
+  border: 1px solid;
+  padding: 7px 10px;
+
+  &__label { font-size: 7px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3px; display: block; }
+  &__text  { font-size: 12px; font-style: italic; line-height: 1.4; }
+}
+
+// Tips
+.tips-box {
+  padding: 16px 20px;
+  margin-top: 4px;
+
+  &__title { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+  &__item  { display: flex; gap: 10px; margin-bottom: 7px; font-size: 12px; line-height: 1.5; align-items: flex-start; }
+  &__bullet { font-size: 13px; flex-shrink: 0; line-height: 1.3; }
+}
+
+// Sheet footer
+.sheet-footer {
+  text-align: center;
+  padding: 10px;
+  border-top: 1px solid;
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}

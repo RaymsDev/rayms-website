@@ -1,0 +1,118 @@
+<!-- scenario.component.html -->
+<!-- Full scenario page: zones, beer effect, boss and multiple endings -->
+
+<div class="scenario-page">
+
+  <nav class="breadcrumb">
+    <a [routerLink]="['/poymoys-and-dragons']">← Retour à la campagne</a>
+  </nav>
+
+  <div class="scenario-sheet" *ngIf="scenario">
+
+    <!-- ── HEADER ────────────────────────── -->
+    <header class="scenario-header">
+      <p class="scenario-header__label">✦ Scénario One-Shot D&amp;D 5e ✦</p>
+      <h1 class="scenario-header__title">{{ scenario.title }}</h1>
+      <p class="scenario-header__subtitle">{{ scenario.subtitle }}</p>
+      <p class="scenario-header__hook">{{ scenario.hook }}</p>
+    </header>
+
+    <div class="scenario-body">
+
+      <!-- ── ZONES ─────────────────────────── -->
+      <h2 class="section-title">🗺️ Plan de la Brasserie</h2>
+      <div class="zones-grid">
+        <div class="zone-card" *ngFor="let zone of scenario.zones">
+          <div class="zone-card__head">
+            <span class="zone-card__number">Zone {{ zone.number }}</span>
+            <span class="zone-card__emoji">{{ zone.emoji }}</span>
+          </div>
+          <h3 class="zone-card__name">{{ zone.name }}</h3>
+          <p class="zone-card__desc">{{ zone.description }}</p>
+          <div class="zone-card__tag zone-card__tag--trap"   *ngIf="zone.trap">   ⚠️ {{ zone.trap }}</div>
+          <div class="zone-card__tag zone-card__tag--combat" *ngIf="zone.combat"> ⚔️ {{ zone.combat }}</div>
+        </div>
+      </div>
+
+      <!-- ── BEER EFFECT ────────────────────── -->
+      <h2 class="section-title">🍺 {{ scenario.beerEffect.title }}</h2>
+      <div class="beer-box">
+        <p class="beer-box__desc">{{ scenario.beerEffect.description }}</p>
+        <ul class="beer-box__effects">
+          <li *ngFor="let effect of scenario.beerEffect.effects">{{ effect }}</li>
+        </ul>
+      </div>
+
+      <!-- ── BOSS ───────────────────────────── -->
+      <h2 class="section-title">💀 Boss Final</h2>
+      <div class="boss-card">
+        <div class="boss-card__head">
+          <h3 class="boss-card__name">{{ scenario.boss.name }}</h3>
+          <span class="boss-card__cr">Défi {{ scenario.boss.challengeRating }}</span>
+        </div>
+        <p class="boss-card__desc">{{ scenario.boss.description }}</p>
+        <div class="boss-stats">
+          <div class="boss-stat">
+            <span class="boss-stat__value">{{ scenario.boss.armorClass }}</span>
+            <span class="boss-stat__label">CA</span>
+          </div>
+          <div class="boss-stat">
+            <span class="boss-stat__value">{{ scenario.boss.hitPoints }}</span>
+            <span class="boss-stat__label">PV max</span>
+          </div>
+          <div class="boss-stat">
+            <span class="boss-stat__value">{{ scenario.boss.attackBonus }}</span>
+            <span class="boss-stat__label">Attaque</span>
+          </div>
+          <div class="boss-stat boss-stat--wide">
+            <span class="boss-stat__value">{{ scenario.boss.damage }}</span>
+            <span class="boss-stat__label">Dégâts</span>
+          </div>
+        </div>
+
+        <!-- Boss HP tracker -->
+        <p class="boss-hp-label">Tracker PV — {{ bossCurrentHp }} / {{ bossMaxHp }}</p>
+        <div class="hp-tracker">
+          <div
+            class="hp-bubble"
+            *ngFor="let b of bossHpBubbles; let i = index"
+            [class.hp-bubble--filled]="isBossBubbleFilled(i)"
+            (click)="toggleBossHp(i)"
+          ></div>
+        </div>
+      </div>
+
+      <!-- ── ENDINGS ────────────────────────── -->
+      <h2 class="section-title">🎭 Fins Possibles</h2>
+      <div class="endings-grid">
+        <div class="ending-card" *ngFor="let ending of scenario.endings">
+          <div class="ending-card__title">{{ ending.title }}</div>
+          <div class="ending-card__reward">{{ ending.reward }}</div>
+          <p class="ending-card__desc">{{ ending.description }}</p>
+        </div>
+      </div>
+
+      <!-- ── CHARACTER LINKS ────────────────── -->
+      <h2 class="section-title">👥 Fiches Personnages</h2>
+      <div class="character-links">
+        <a
+          class="character-link"
+          *ngFor="let character of characters"
+          [routerLink]="['/poymoys-and-dragons/characters', character.id]"
+        >
+          <span class="character-link__portrait">{{ character.portrait }}</span>
+          <span class="character-link__name">{{ character.name }}</span>
+          <span class="character-link__class">{{ character.characterClass }}</span>
+          <span class="character-link__arrow">→</span>
+        </a>
+      </div>
+
+    </div><!-- end scenario-body -->
+
+    <footer class="scenario-footer">
+      La Brasserie des Ventres Plats &nbsp;✦&nbsp; One-Shot D&amp;D 5e &nbsp;✦&nbsp; Donjons &amp; Poymoys
+    </footer>
+
+  </div><!-- end scenario-sheet -->
+
+</div>

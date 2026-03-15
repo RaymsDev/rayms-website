@@ -1,0 +1,177 @@
+<!-- campaign-home.component.html -->
+<!-- Landing page: guild intro + quick access cards -->
+
+<div class="campaign-home">
+
+  <!-- ── HERO ───────────────────────────── -->
+  <header class="hero">
+    <div class="hero-ornament top">✦ ✦ ✦</div>
+    <p class="hero-label">Donjons &amp; Poymoys</p>
+    <h1 class="hero-title">La Brasserie des<br>Ventres Plats</h1>
+    <p class="hero-subtitle">Scénario One-Shot D&amp;D 5e — Niveau 3</p>
+    <p class="hero-tagline">
+      Une recette légendaire. Des sbires qui dansent.
+      Une bière qui fait maigrir. Et un maître de guilde qui regrette déjà.
+    </p>
+    <div class="hero-ornament bottom">✦ ✦ ✦</div>
+  </header>
+
+  <div class="page-content">
+
+    <!-- ── GUILD INTRODUCTION ─────────────── -->
+    <section class="guild-intro">
+
+      <div class="guild-banner">
+        <span class="guild-banner__icon">⚔️</span>
+        <span class="guild-banner__text">La Guilde des Héros Éclatants</span>
+        <span class="guild-banner__icon">⚔️</span>
+      </div>
+
+      <div class="guild-intro__body">
+
+        <p class="intro-text intro-text--lead">
+          Quelque part entre la légende et le règlement intérieur, il existe une guilde.
+        </p>
+
+        <p class="intro-text">
+          La <strong>Guilde des Héros Éclatants</strong> compte en ses rangs les plus grands
+          aventuriers du royaume connu. Des paladins dont l'armure reflète le soleil. Des archères
+          qui abattent un gobelin à trois cents mètres par temps de brouillard. Des druides capables
+          de parler aux arbres — et d'en recevoir des conseils utiles.
+        </p>
+
+        <div class="alert-box">
+          <span class="alert-box__icon">⚠️</span>
+          <p>Ces héros-là sont en ce moment <strong>en quête</strong>. Tous. En même temps.
+          Pour des raisons diverses, toutes également héroïques et convenablement épiques.</p>
+        </div>
+
+        <p class="intro-text">
+          Il ne reste donc, assis dans la grande salle de la guilde, qu'une poignée d'aventuriers
+          que l'on n'appelle <em>habituellement pas</em>. Ceux dont le nom figure tout en bas de la
+          liste de permanence. Ceux que l'on convoque quand le scénario exige de la discrétion…
+          ou du désespoir.
+        </p>
+
+        <!-- Party preview -->
+        <div class="party-list">
+          <div class="party-member" *ngFor="let character of characters">
+            <span class="party-member__portrait">{{ character.portrait }}</span>
+            <div class="party-member__info">
+              <div class="party-member__name">{{ character.name }}</div>
+              <div class="party-member__tagline">
+                <ng-container [ngSwitch]="character.id">
+                  <span *ngSwitchCase="'zippi'">Dont les dents en bois ont déjà semé plus de panique que ses sorts.</span>
+                  <span *ngSwitchCase="'merlin'">Dont personne ne sait vraiment si le nom est un titre ou un aveu.</span>
+                  <span *ngSwitchCase="'soeur-moy'">Qui a passé dix minutes à inspecter les rations avant d'accepter la mission.</span>
+                  <span *ngSwitchDefault>Membre de la guilde.</span>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="intro-text">
+          Ce n'est pas le groupe qu'on aurait choisi.
+          C'est le groupe qu'on a.
+          Et quelque part dans les ruines d'une brasserie naine abandonnée, une recette légendaire
+          attend d'être retrouvée.
+        </p>
+
+        <!-- Guild master quote -->
+        <blockquote class="guild-quote">
+          <div class="guild-quote__dash">—</div>
+          <div class="guild-quote__body">
+            <p class="guild-quote__text">
+              Le Maître de Guilde a regardé ses trois aventuriers disponibles.
+              Il a regardé le contrat. Il a regardé ses aventuriers.
+              Il a soupiré très fort.
+            </p>
+            <p class="guild-quote__punchline">
+              Puis il a dit : <strong>"Bon. Allez-y quand même."</strong>
+            </p>
+            <cite class="guild-quote__source">— Registre officiel de la Guilde, tome XII, page 347</cite>
+          </div>
+        </blockquote>
+
+      </div>
+    </section>
+
+    <!-- ── QUICK ACCESS ────────────────────── -->
+    <section class="quick-access">
+      <h2 class="section-title">Accès rapide</h2>
+
+      <div class="access-grid">
+
+        <!-- Scenario card -->
+        <a class="access-card access-card--scenario" [routerLink]="['/poymoys-and-dragons/scenario']">
+          <span class="access-card__emoji">📜</span>
+          <div class="access-card__body">
+            <h3 class="access-card__title">Le Scénario</h3>
+            <p class="access-card__desc">Zones, boss, effets de la bière et fins multiples.</p>
+          </div>
+          <span class="access-card__arrow">→</span>
+        </a>
+
+        <!-- Character cards -->
+        <a
+          class="access-card"
+          *ngFor="let character of characters"
+          [routerLink]="['/poymoys-and-dragons/characters', character.id]"
+        >
+          <span class="access-card__emoji">{{ character.portrait }}</span>
+          <div class="access-card__body">
+            <h3 class="access-card__title">{{ character.name }}</h3>
+            <p class="access-card__desc">{{ character.characterClass }} · {{ character.race }}</p>
+          </div>
+          <span class="access-card__arrow">→</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ── PARTY OVERVIEW ─────────────────── -->
+    <section class="party-overview">
+      <h2 class="section-title">Le groupe d'aventuriers</h2>
+
+      <div class="party-overview__list">
+        <div
+          class="party-card"
+          *ngFor="let character of characters"
+          [routerLink]="['/poymoys-and-dragons/characters', character.id]"
+        >
+          <span class="party-card__portrait">{{ character.portrait }}</span>
+
+          <div class="party-card__info">
+            <div class="party-card__name">{{ character.name }}</div>
+            <div class="party-card__class">{{ character.characterClass }}</div>
+            <div class="party-card__tags">
+              <span
+                class="character-tag"
+                *ngFor="let tag of character.tags.slice(0, 2)"
+                [class]="'character-tag--' + (tag.style || 'default')"
+              >{{ tag.label }}</span>
+            </div>
+          </div>
+
+          <div class="party-card__stats">
+            <div class="stat-pill">
+              <span class="stat-pill__value">{{ character.hitPoints }}</span>
+              <span class="stat-pill__label">PV</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-pill__value">{{ character.armorClass }}</span>
+              <span class="stat-pill__label">CA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- end page-content -->
+
+  <footer class="page-footer">
+    La Brasserie des Ventres Plats &nbsp;✦&nbsp; One-Shot D&amp;D 5e &nbsp;✦&nbsp; Donjons &amp; Poymoys
+  </footer>
+
+</div>

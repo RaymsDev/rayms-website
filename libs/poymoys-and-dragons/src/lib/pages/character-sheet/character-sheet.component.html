@@ -1,0 +1,281 @@
+<!-- character-sheet.component.html -->
+<!-- Full character sheet with interactive HP tracker and spell slot tracker -->
+
+<div class="sheet-page" *ngIf="character; else notFound">
+
+  <nav class="breadcrumb">
+    <a [routerLink]="['/poymoys-and-dragons']">← Retour à la campagne</a>
+  </nav>
+
+  <div class="sheet" [class]="'sheet--' + character.theme">
+
+    <!-- ── HEADER ────────────────────────────── -->
+    <header class="sheet-header">
+      <p class="sheet-header__label">✦ Fiche de Personnage — D&amp;D 5e ✦</p>
+      <h1 class="sheet-header__name">{{ character.name }}</h1>
+      <p class="sheet-header__epithet">{{ character.epithet }}</p>
+      <div class="sheet-header__tags">
+        <span
+          class="character-tag"
+          *ngFor="let tag of character.tags"
+          [class]="'character-tag--' + (tag.style || 'default')"
+        >{{ tag.label }}</span>
+      </div>
+    </header>
+
+    <!-- ── BODY ──────────────────────────────── -->
+    <div class="sheet-body">
+
+      <!-- Portrait + identity -->
+      <div class="identity-grid">
+
+        <div class="portrait">
+          <div class="portrait__emoji">{{ character.portrait }}</div>
+          <div class="portrait__caption">{{ character.portraitCaption }}</div>
+        </div>
+
+        <div class="identity">
+          <div class="identity__row">
+            <div class="id-field">
+              <span class="id-field__label">Race</span>
+              <span class="id-field__value">{{ character.race }}</span>
+            </div>
+            <div class="id-field">
+              <span class="id-field__label">Classe</span>
+              <span class="id-field__value">{{ character.characterClass }}</span>
+            </div>
+          </div>
+          <div class="identity__row">
+            <div class="id-field">
+              <span class="id-field__label">Alignement</span>
+              <span class="id-field__value">{{ character.alignment }}</span>
+            </div>
+            <div class="id-field">
+              <span class="id-field__label">Background</span>
+              <span class="id-field__value">{{ character.background }}</span>
+            </div>
+          </div>
+          <div class="identity__row" *ngIf="character.spellSaveDC">
+            <div class="id-field">
+              <span class="id-field__label">DD Sauvegarde Sort</span>
+              <span class="id-field__value id-field__value--accent">{{ character.spellSaveDC }}</span>
+            </div>
+            <div class="id-field">
+              <span class="id-field__label">Bonus Attaque Sort</span>
+              <span class="id-field__value id-field__value--accent">{{ character.spellAttackBonus }}</span>
+            </div>
+          </div>
+          <div class="id-field id-field--full" *ngIf="character.specialTraits?.length">
+            <span class="id-field__label">Capacités raciales</span>
+            <span class="id-field__value id-field__value--small">{{ character.specialTraits?.join(' · ') }}</span>
+          </div>
+          <div class="lore-box">{{ character.lore }}</div>
+        </div>
+
+      </div><!-- end identity-grid -->
+
+      <div class="divider">✦ ✦ ✦</div>
+
+      <!-- Ability scores -->
+      <h2 class="section-title">Caractéristiques</h2>
+      <div class="ability-grid">
+        <div
+          class="ability-box"
+          *ngFor="let score of character.abilityScores"
+          [class.ability-box--primary]="score.isPrimary"
+        >
+          <span class="ability-box__label">{{ score.label }}</span>
+          <span class="ability-box__score">{{ score.value }}</span>
+          <span class="ability-box__modifier">{{ score.modifier }}</span>
+        </div>
+      </div>
+
+      <!-- Saving throws (optional) -->
+      <div class="saving-throws" *ngIf="character.savingThrows?.length">
+        <div
+          class="save-badge"
+          *ngFor="let save of character.savingThrows"
+          [class.save-badge--proficient]="save.isProficient"
+        >
+          <span class="save-badge__label">{{ save.label }}</span>
+          <span class="save-badge__value">{{ save.value }}</span>
+        </div>
+      </div>
+
+      <!-- Combat stats -->
+      <div class="combat-row">
+
+        <div class="combat-stat combat-stat--hp">
+          <span class="combat-stat__label">❤ Points de Vie</span>
+          <span class="combat-stat__value">{{ character.hitPoints }}</span>
+          <div class="hp-tracker">
+            <div
+              class="hp-bubble"
+              *ngFor="let bubble of hpBubbles; let i = index"
+              [class.hp-bubble--filled]="isBubbleFilled(i)"
+              (click)="toggleHp(i)"
+            ></div>
+          </div>
+        </div>
+
+        <div class="combat-stat">
+          <span class="combat-stat__label">Classe d'Armure</span>
+          <span class="combat-stat__value">{{ character.armorClass }}</span>
+        </div>
+
+        <div class="combat-stat">
+          <span class="combat-stat__label">Initiative</span>
+          <span class="combat-stat__value">{{ character.initiative }}</span>
+        </div>
+
+        <div class="combat-stat">
+          <span class="combat-stat__label">Bonus Maîtrise</span>
+          <span class="combat-stat__value">{{ character.proficiencyBonus }}</span>
+        </div>
+
+      </div><!-- end combat-row -->
+
+      <div class="divider">✦ ✦ ✦</div>
+
+      <!-- Two-column: spells | traits + equipment + skills -->
+      <div class="two-column">
+
+        <!-- LEFT: spell sections -->
+        <div class="spells-column" *ngIf="character.spellSections?.length">
+
+          <ng-container *ngFor="let section of character.spellSections">
+
+            <!-- Section header with optional slot tracker -->
+            <div class="spell-section-header">
+              <span class="spell-section-header__title">✦ {{ section.title }}</span>
+              <div class="slot-tracker" *ngIf="section.slots">
+                <div
+                  class="slot-pip"
+                  *ngFor="let s of getSlotRange(section.slots); let i = index"
+                  [class.slot-pip--used]="!isSlotAvailable(section.title, i)"
+                  [style.border-color]="section.slotColor"
+                  [style.background-color]="isSlotAvailable(section.title, i) ? section.slotColor : 'transparent'"
+                  (click)="toggleSlot(section.title, i)"
+                ></div>
+              </div>
+            </div>
+
+            <!-- Spell cards -->
+            <div class="spell-card" *ngFor="let spell of section.spells">
+              <div class="spell-card__header" [class]="'spell-card__header--' + (spell.badgeStyle || 'default')">
+                <span class="spell-card__name">{{ spell.emoji }} {{ spell.name }}</span>
+                <span class="spell-card__badge" [class]="'spell-card__badge--' + (spell.badgeStyle || 'default')">
+                  {{ spell.badge }}
+                </span>
+              </div>
+              <div class="spell-card__body">
+                <div class="spell-meta">
+                  <span class="spell-meta__item" *ngIf="spell.range">
+                    <strong>PORTÉE</strong> {{ spell.range }}
+                  </span>
+                  <span class="spell-meta__item" *ngIf="spell.damage">
+                    <strong>DÉGÂTS</strong> {{ spell.damage }}
+                  </span>
+                  <span class="spell-meta__item" *ngIf="spell.effect">
+                    <strong>EFFET</strong> {{ spell.effect }}
+                  </span>
+                  <span class="spell-meta__item" *ngIf="spell.duration">
+                    <strong>DURÉE</strong> {{ spell.duration }}
+                  </span>
+                </div>
+                <p class="spell-card__desc">{{ spell.description }}</p>
+              </div>
+            </div>
+
+          </ng-container>
+
+        </div><!-- end spells-column -->
+
+        <!-- RIGHT: traits + equipment + skills -->
+        <div class="info-column">
+
+          <!-- Traits -->
+          <h2 class="section-title">Traits &amp; Capacités</h2>
+          <div class="trait-item" *ngFor="let trait of character.traits">
+            <span class="trait-item__icon">{{ trait.emoji }}</span>
+            <div>
+              <div class="trait-item__name">{{ trait.name }}</div>
+              <div class="trait-item__desc">{{ trait.description }}</div>
+            </div>
+          </div>
+
+          <!-- Equipment -->
+          <h2 class="section-title" style="margin-top: 16px;">Équipement</h2>
+          <ul class="equipment-list">
+            <li
+              *ngFor="let item of character.equipment"
+              [class.equipment-list__item--magical]="item.isMagical"
+            >
+              {{ item.emoji }}
+              <strong *ngIf="item.isMagical">{{ item.name }}</strong>
+              <span *ngIf="!item.isMagical">{{ item.name }}</span>
+              <span class="equipment-list__detail" *ngIf="item.detail"> — {{ item.detail }}</span>
+            </li>
+          </ul>
+
+          <!-- Skills -->
+          <h2 class="section-title" style="margin-top: 16px;">Compétences</h2>
+          <div class="skills-grid">
+            <div class="skill-row" *ngFor="let skill of character.skills">
+              <div class="skill-row__pip" [class.skill-row__pip--proficient]="skill.isProficient"></div>
+              <span class="skill-row__name">{{ skill.name }}</span>
+              <span class="skill-row__bonus">{{ skill.bonus }}</span>
+            </div>
+          </div>
+
+        </div><!-- end info-column -->
+
+      </div><!-- end two-column -->
+
+      <!-- Roleplay traits -->
+      <h2 class="section-title">Traits de Personnalité</h2>
+      <div class="roleplay-grid">
+        <div class="roleplay-box">
+          <span class="roleplay-box__label">🎭 Personnalité</span>
+          <p class="roleplay-box__text">{{ character.roleplay.personality }}</p>
+        </div>
+        <div class="roleplay-box">
+          <span class="roleplay-box__label">💡 Idéal</span>
+          <p class="roleplay-box__text">{{ character.roleplay.ideal }}</p>
+        </div>
+        <div class="roleplay-box">
+          <span class="roleplay-box__label">🔗 Lien</span>
+          <p class="roleplay-box__text">{{ character.roleplay.bond }}</p>
+        </div>
+        <div class="roleplay-box">
+          <span class="roleplay-box__label">⚠️ Défaut</span>
+          <p class="roleplay-box__text">{{ character.roleplay.flaw }}</p>
+        </div>
+      </div>
+
+      <!-- Player tips -->
+      <div class="tips-box">
+        <div class="tips-box__title">🎓 Guide du Joueur</div>
+        <div class="tips-box__item" *ngFor="let tip of character.tips">
+          <span class="tips-box__bullet">{{ tip.emoji }}</span>
+          <span [innerHTML]="tip.text"></span>
+        </div>
+      </div>
+
+    </div><!-- end sheet-body -->
+
+    <footer class="sheet-footer">
+      La Brasserie des Ventres Plats &nbsp;✦&nbsp; D&amp;D 5e &nbsp;✦&nbsp; Niveau 3
+    </footer>
+
+  </div><!-- end sheet -->
+
+</div>
+
+<!-- Fallback if character id is unknown -->
+<ng-template #notFound>
+  <div class="not-found">
+    <p>Personnage introuvable.</p>
+    <a [routerLink]="['/poymoys-and-dragons']">← Retour à la campagne</a>
+  </div>
+</ng-template>

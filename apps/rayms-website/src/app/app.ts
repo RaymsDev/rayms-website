@@ -1,10 +1,9 @@
 
 import { Component, HostListener, inject, OnInit } from '@angular/core';
-import { Router, RouterModule, NavigationEnd } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { MetaService } from './services/meta.service';
 import { StructuredDataService } from './services/structured-data.service';
-import { RouterDebugService } from './services/router-debug.service';
 
 @Component({
   imports: [RouterModule],
@@ -19,7 +18,6 @@ export class App implements OnInit {
   private router = inject(Router);
   private metaService = inject(MetaService);
   private structuredDataService = inject(StructuredDataService);
-  private routerDebugService = inject(RouterDebugService);
 
   // Mobile secret access properties
   private tapCount = 0;
@@ -54,19 +52,7 @@ export class App implements OnInit {
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    // Debug: log all key combinations for troubleshooting
-    if (event.ctrlKey || event.shiftKey) {
-      console.log('Key combination detected:', {
-        key: event.key,
-        code: event.code,
-        ctrlKey: event.ctrlKey,
-        shiftKey: event.shiftKey,
-        altKey: event.altKey,
-        metaKey: event.metaKey,
-      });
-    }
-
-    // Secret combination: Ctrl + Shift + R or Ctrl + K (more robust check)
+    // Ctrl + Shift + R to open the route navigator
     if (
       event.ctrlKey &&
       event.shiftKey &&
@@ -74,7 +60,6 @@ export class App implements OnInit {
     ) {
       event.preventDefault();
       event.stopPropagation();
-      console.log('Route navigator shortcut triggered!');
       this.toggleRouteNavigator();
     }
     // ESC to close

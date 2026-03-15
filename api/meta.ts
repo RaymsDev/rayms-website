@@ -1,5 +1,18 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
+// Whitelist of known route paths
+const ALLOWED_PATHS = new Set(['/expedition-33']);
+
+/**
+ * Returns the path only if it is a known safe route, otherwise returns '/'.
+ * This prevents untrusted input from ever reaching the HTML template.
+ */
+function sanitizePath(raw: unknown): string {
+  if (typeof raw !== 'string') return '/';
+  const trimmed = raw.split('?')[0].split('#')[0]; // strip query / fragment
+  return ALLOWED_PATHS.has(trimmed) ? trimmed : '/';
+}
+
 interface PageMeta {
   title: string;
   description: string;
@@ -71,15 +84,8 @@ const generateMetaTags = (meta: PageMeta): string => {
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
   const userAgent = req.headers['user-agent'] || '';
-  const path = (req.query.path as string) || '/';
-
-  // Debug logging
-  console.log('Meta API called with:', {
-    userAgent,
-    path,
-    query: req.query,
-    url: req.url
-  });
+  // Sanitize path against a known-good whitelist before any use
+  const path = sanitizePath(req.query.path);
 
   // Check if it's a social media crawler
   const isCrawler =
@@ -114,7 +120,8 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   </body>
 </html>`;
 
-    res.setHeader('Content-Type', 'text/html');
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
     res.status(200).send(html);
   } else {
     // This shouldn't happen for browsers since Vercel should route them to index.html directly
