@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { passwordGuard } from '../guards/password.guard';
 
 export const POYMOYS_ROUTES: Route[] = [
   {
@@ -9,6 +10,7 @@ export const POYMOYS_ROUTES: Route[] = [
   },
   {
     path: 'scenario',
+    canActivate: [passwordGuard],
     loadComponent: () =>
       import('../pages/scenario/scenario.component')
         .then(m => m.ScenarioComponent),
