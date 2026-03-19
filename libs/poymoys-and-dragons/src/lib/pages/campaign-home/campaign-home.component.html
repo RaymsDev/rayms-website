@@ -55,20 +55,30 @@
 
         <!-- Party preview -->
         <div class="party-list">
-          <div class="party-member" *ngFor="let character of characters">
-            <span class="party-member__portrait">{{ character.portrait }}</span>
-            <div class="party-member__info">
-              <div class="party-member__name">{{ character.name }}</div>
-              <div class="party-member__tagline">
-                <ng-container [ngSwitch]="character.id">
-                  <span *ngSwitchCase="'zippi'">Dont les dents en bois ont déjà semé plus de panique que ses sorts.</span>
-                  <span *ngSwitchCase="'merlin'">Dont personne ne sait vraiment si le nom est un titre ou un aveu.</span>
-                  <span *ngSwitchCase="'soeur-moy'">Qui a passé dix minutes à inspecter les rations avant d'accepter la mission.</span>
-                  <span *ngSwitchDefault>Membre de la guilde.</span>
-                </ng-container>
+          @for (character of characters; track character.id) {
+            <div class="party-member">
+              <span class="party-member__portrait">{{ character.portrait }}</span>
+              <div class="party-member__info">
+                <div class="party-member__name">{{ character.name }}</div>
+                <div class="party-member__tagline">
+                  @switch (character.id) {
+                    @case ('zippi') {
+                      <span>Dont les dents en bois ont déjà semé plus de panique que ses sorts.</span>
+                    }
+                    @case ('merlin') {
+                      <span>Dont personne ne sait vraiment si le nom est un titre ou un aveu.</span>
+                    }
+                    @case ('soeur-moy') {
+                      <span>Qui a passé dix minutes à inspecter les rations avant d'accepter la mission.</span>
+                    }
+                    @default {
+                      <span>Membre de la guilde.</span>
+                    }
+                  }
+                </div>
               </div>
             </div>
-          </div>
+          }
         </div>
 
         <p class="intro-text">
@@ -114,18 +124,19 @@
         </a>
 
         <!-- Character cards -->
-        <a
-          class="access-card"
-          *ngFor="let character of characters"
-          [routerLink]="['/poymoys-and-dragons/characters', character.id]"
-        >
-          <span class="access-card__emoji">{{ character.portrait }}</span>
-          <div class="access-card__body">
-            <h3 class="access-card__title">{{ character.name }}</h3>
-            <p class="access-card__desc">{{ character.characterClass }} · {{ character.race }}</p>
-          </div>
-          <span class="access-card__arrow">→</span>
-        </a>
+        @for (character of characters; track character.id) {
+          <a
+            class="access-card"
+            [routerLink]="['/poymoys-and-dragons/characters', character.id]"
+          >
+            <span class="access-card__emoji">{{ character.portrait }}</span>
+            <div class="access-card__body">
+              <h3 class="access-card__title">{{ character.name }}</h3>
+              <p class="access-card__desc">{{ character.characterClass }} · {{ character.race }}</p>
+            </div>
+            <span class="access-card__arrow">→</span>
+          </a>
+        }
 
       </div>
     </section>
@@ -135,36 +146,38 @@
       <h2 class="section-title">Le groupe d'aventuriers</h2>
 
       <div class="party-overview__list">
-        <div
-          class="party-card"
-          *ngFor="let character of characters"
-          [routerLink]="['/poymoys-and-dragons/characters', character.id]"
-        >
-          <span class="party-card__portrait">{{ character.portrait }}</span>
+        @for (character of characters; track character.id) {
+          <div
+            class="party-card"
+            [routerLink]="['/poymoys-and-dragons/characters', character.id]"
+          >
+            <span class="party-card__portrait">{{ character.portrait }}</span>
 
-          <div class="party-card__info">
-            <div class="party-card__name">{{ character.name }}</div>
-            <div class="party-card__class">{{ character.characterClass }}</div>
-            <div class="party-card__tags">
-              <span
-                class="character-tag"
-                *ngFor="let tag of character.tags.slice(0, 2)"
-                [class]="'character-tag--' + (tag.style || 'default')"
-              >{{ tag.label }}</span>
+            <div class="party-card__info">
+              <div class="party-card__name">{{ character.name }}</div>
+              <div class="party-card__class">{{ character.characterClass }}</div>
+              <div class="party-card__tags">
+                @for (tag of character.tags.slice(0, 2); track tag.label) {
+                  <span
+                    class="character-tag"
+                    [class]="'character-tag--' + (tag.style || 'default')"
+                  >{{ tag.label }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="party-card__stats">
+              <div class="stat-pill">
+                <span class="stat-pill__value">{{ character.hitPoints }}</span>
+                <span class="stat-pill__label">PV</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-pill__value">{{ character.armorClass }}</span>
+                <span class="stat-pill__label">CA</span>
+              </div>
             </div>
           </div>
-
-          <div class="party-card__stats">
-            <div class="stat-pill">
-              <span class="stat-pill__value">{{ character.hitPoints }}</span>
-              <span class="stat-pill__label">PV</span>
-            </div>
-            <div class="stat-pill">
-              <span class="stat-pill__value">{{ character.armorClass }}</span>
-              <span class="stat-pill__label">CA</span>
-            </div>
-          </div>
-        </div>
+        }
       </div>
     </section>
 

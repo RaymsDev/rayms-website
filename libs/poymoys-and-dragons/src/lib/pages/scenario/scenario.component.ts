@@ -1,19 +1,21 @@
 // scenario.component.ts
 // Displays the full one-shot scenario with interactive boss HP tracker.
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CampaignService, Scenario, Character } from '../../services/campaign.service';
 
 @Component({
-  selector: 'app-scenario',
+  selector: 'lib-scenario',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './scenario.component.html',
   styleUrls: ['./scenario.component.scss'],
 })
 export class ScenarioComponent implements OnInit {
+
+  private campaignService = inject(CampaignService);
 
   scenario?: Scenario;
   characters: Character[] = [];
@@ -22,8 +24,6 @@ export class ScenarioComponent implements OnInit {
   bossMaxHp = 27;
   bossCurrentHp = 27;
   bossHpBubbles: number[] = Array(27).fill(0);
-
-  constructor(private campaignService: CampaignService) {}
 
   ngOnInit(): void {
     this.scenario = this.campaignService.getScenario();

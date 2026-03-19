@@ -2,13 +2,13 @@
 // Landing page of the D&D campaign module.
 // Displays the guild introduction and links to character sheets and scenario.
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CampaignService, Character } from '../../services/campaign.service';
 
 @Component({
-  selector: 'app-campaign-home',
+  selector: 'lib-campaign-home',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './campaign-home.component.html',
@@ -16,9 +16,9 @@ import { CampaignService, Character } from '../../services/campaign.service';
 })
 export class CampaignHomeComponent implements OnInit {
 
-  characters: Character[] = [];
+  private campaignService = inject(CampaignService);
 
-  constructor(private campaignService: CampaignService) {}
+  characters: Character[] = [];
 
   ngOnInit(): void {
     this.characters = this.campaignService.getCharacters();

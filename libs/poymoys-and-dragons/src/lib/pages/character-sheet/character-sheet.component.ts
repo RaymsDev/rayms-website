@@ -2,19 +2,22 @@
 // Displays a single character's full sheet.
 // Handles HP tracking and spell slot toggling via local component state.
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { CampaignService, Character } from '../../services/campaign.service';
 
 @Component({
-  selector: 'app-character-sheet',
+  selector: 'lib-character-sheet',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './character-sheet.component.html',
   styleUrls: ['./character-sheet.component.scss'],
 })
 export class CharacterSheetComponent implements OnInit {
+
+  private route = inject(ActivatedRoute);
+  private campaignService = inject(CampaignService);
 
   character?: Character;
 
@@ -24,11 +27,6 @@ export class CharacterSheetComponent implements OnInit {
 
   // Spell slot tracking — key: section title, value: array of booleans (true = available)
   private slotAvailability: Record<string, boolean[]> = {};
-
-  constructor(
-    private route: ActivatedRoute,
-    private campaignService: CampaignService,
-  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -46,8 +44,9 @@ export class CharacterSheetComponent implements OnInit {
   // ── HP helpers ────────────────────────────────────────────────
 
   private initHpTracker(): void {
-    this.currentHp = this.character!.hitPoints;
-    this.hpBubbles = Array(this.character!.hitPoints).fill(0);
+    if (!this.character) return;
+    this.currentHp = this.character.hitPoints;
+    this.hpBubbles = Array(this.character.hitPoints).fill(0);
   }
 
   /**
