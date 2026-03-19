@@ -1,0 +1,124 @@
+<div class="invitation-container">
+  <!-- Confettis flottants -->
+  <div class="confetti confetti-1">🎊</div>
+  <div class="confetti confetti-2">🎈</div>
+  <div class="confetti confetti-3">🎉</div>
+  <div class="confetti confetti-4">🎊</div>
+  <div class="confetti confetti-5">🎈</div>
+  <div class="confetti confetti-6">🎉</div>
+  <div class="confetti confetti-7">🎊</div>
+  <div class="confetti confetti-8">🎈</div>
+
+  <!-- En-tête -->
+  <header class="invitation-header">
+    <h1 class="title">
+      <span class="emoji">🎂</span>
+      <span class="gradient-text">Anniversaire Surprise</span>
+      <span class="emoji">🎂</span>
+    </h1>
+    <h2 class="subtitle">La Fête de Laura !</h2>
+    <div class="birthday-badge">
+      <span>🎉 Le 3 Mai — Midi 🎉</span>
+    </div>
+  </header>
+
+  <!-- Corps principal -->
+  <main class="invitation-body">
+    <!-- Message secret -->
+    <div class="secret-banner">
+      <p>🤫 <strong>SECRET DÉFENSE</strong> — Ne rien dire à Laura !</p>
+    </div>
+
+    <!-- Message principal -->
+    <div class="main-message">
+      <p class="intro">
+        Salut ! 👋 Je t'invite à la <strong>fête d'anniversaire surprise</strong> de ma chérie Laura !
+        On va lui faire une belle surprise pour son anniversaire 🥳
+      </p>
+
+      <p class="info-line">
+        🍻 <strong>Côté boissons :</strong> Je m'occupe d'une bonne partie,
+        mais les volontaires sont les bienvenus pour ramener leurs boissons préférées !
+      </p>
+
+      <p class="info-line">
+        🎁 <strong>Côté cadeau :</strong> Je suis en train d'organiser un cadeau groupé,
+        je vous tiens au courant très vite !
+      </p>
+
+      <p class="reminder">
+        📵 Pensez à mettre le groupe en <strong>silencieux</strong> pour éviter qu'une
+        notification ne trahisse la surprise si elle vous voit !
+      </p>
+    </div>
+
+    <!-- Détails de l'événement -->
+    <section class="event-details">
+      <h3>📅 Détails de la Fête</h3>
+      <div class="detail-item"><strong>📅 Date :</strong> {{ partyDate }}</div>
+      <div class="detail-item"><strong>🕛 Heure :</strong> {{ partyTime }}</div>
+      <div class="detail-item"><strong>📍 Adresse :</strong> {{ address }}</div>
+    </section>
+
+    <!-- Boutons d'action -->
+    <section class="action-buttons">
+      <button
+        class="btn btn-maps"
+        (click)="openGoogleMaps()"
+        title="Voir l'adresse sur Google Maps"
+      >
+        🗺️ Voir sur Google Maps
+      </button>
+
+      <button
+        class="btn btn-calendar"
+        (click)="addToCalendar()"
+        title="Ajouter l'événement à votre agenda"
+      >
+        📅 Ajouter à l'Agenda
+      </button>
+    </section>
+
+    <!-- Section RSVP -->
+    <section class="rsvp-section">
+      <h3>🎯 Dis-moi si tu viens !</h3>
+      <p class="rsvp-message">
+        Réponds vite pour que je puisse tout organiser dans les meilleures conditions !
+        Précise aussi combien vous serez 😁
+      </p>
+
+      <div class="rsvp-buttons">
+        <button
+          class="btn btn-yes"
+          (click)="onRsvp('oui')"
+          title="Je viens à la fête !"
+        >
+          ✅ Oui, on sera là !
+        </button>
+
+        <button
+          class="btn btn-maybe"
+          (click)="onRsvp('peut-etre')"
+          title="Je ne suis pas sûr(e)"
+        >
+          🤔 Peut-être
+        </button>
+
+        <button
+          class="btn btn-no"
+          (click)="onRsvp('non')"
+          title="Je ne peux pas venir"
+        >
+          ❌ Non, désolé(e)
+        </button>
+      </div>
+    </section>
+
+    <footer class="invitation-footer">
+      <p class="closing-message">
+        🎊 Hâte de fêter ça avec vous tous ! 🎊
+      </p>
+      <p class="signature">On va lui faire une surprise inoubliable ! 🥳✨</p>
+    </footer>
+  </main>
+</div>

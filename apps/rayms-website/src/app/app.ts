@@ -45,6 +45,8 @@ export class App implements OnInit {
     if (url.includes('expedition-33')) {
       this.metaService.setExpedition33Meta();
       this.structuredDataService.addEventStructuredData();
+    } else if (url.includes('bibou-birthday')) {
+      this.metaService.setBibouBirthdayMeta();
     } else {
       this.metaService.setHomeMeta();
     }
