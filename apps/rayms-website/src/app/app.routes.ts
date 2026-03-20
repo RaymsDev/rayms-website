@@ -7,6 +7,11 @@ export const appRoutes: Route[] = [
       import('@rayms-website/invitations').then((m) => m.Expedition33),
   },
   {
+    path: 'bibou-birthday',
+    loadComponent: () =>
+      import('@rayms-website/invitations').then((m) => m.BibouBirthday),
+  },
+  {
     path: 'poymoys-and-dragons',
     loadChildren: () =>
       import('@rayms-website/poymoys-and-dragons').then((m) => m.POYMOYS_ROUTES),

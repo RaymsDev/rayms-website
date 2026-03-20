@@ -11,7 +11,7 @@ export class Expedition33 {
   partyDate = '1 novembre 2025';
   partyTime = '12h00';
   address = `3 chemin d'En Fournes, 81470 Cambon-lès-Lavaur`;
-  emailAddress = 'remy.laffuge@gmail.com';
+  private readonly emailAddress = atob('cmVteS5sYWZmdWdlQGdtYWlsLmNvbQ==');
 
   googleMapsLink =
     'https://maps.google.com/maps?q=3+chemin+d%27En+Fournes,+81470+Cambon-lès-Lavaur';

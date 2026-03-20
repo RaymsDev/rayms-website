@@ -1,0 +1,381 @@
+/* =============================================
+   BIBOU BIRTHDAY — Thème cosmique, mobile-first
+   ============================================= */
+
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+/* ---------- Layout ---------- */
+.invitation-container {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #050515 0%, #0e1a4a 35%, #1a0a2e 60%, #2a0e0a 85%, #0a0515 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+  position: relative;
+  overflow: hidden;
+  padding: 0 0 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ---------- Bannière photo ---------- */
+.invitation-banner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.banner-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- Confettis flottants ---------- */
+.confetti {
+  position: fixed;
+  font-size: 1.5rem;
+  animation: floatConfetti linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+}
+
+.confetti-1 { left: 5%;  animation-duration: 6s;  animation-delay: 0s;   top: -50px; }
+.confetti-2 { left: 15%; animation-duration: 8s;  animation-delay: 1s;   top: -50px; }
+.confetti-3 { left: 30%; animation-duration: 7s;  animation-delay: 2s;   top: -50px; }
+.confetti-4 { left: 50%; animation-duration: 5s;  animation-delay: 0.5s; top: -50px; }
+.confetti-5 { left: 65%; animation-duration: 9s;  animation-delay: 3s;   top: -50px; }
+.confetti-6 { left: 75%; animation-duration: 6.5s;animation-delay: 1.5s; top: -50px; }
+.confetti-7 { left: 85%; animation-duration: 7.5s;animation-delay: 2.5s; top: -50px; }
+.confetti-8 { left: 95%; animation-duration: 8.5s;animation-delay: 0.8s; top: -50px; }
+
+/* ---------- Header ---------- */
+.invitation-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+  background: rgba(10, 15, 50, 0.55);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid rgba(200, 130, 50, 0.4);
+}
+
+.title {
+  font-size: clamp(1.6rem, 7vw, 2.8rem);
+  font-weight: 900;
+  margin: 0 0 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #ffe88a 0%, #f0a050 40%, #e87c2a 70%, #ffe88a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  animation: shimmer 4s ease infinite;
+  background-size: 200%;
+}
+
+.emoji {
+  font-size: clamp(1.4rem, 6vw, 2.2rem);
+}
+
+.subtitle {
+  font-size: clamp(1rem, 4.5vw, 1.6rem);
+  color: #c8d8ff;
+  font-weight: 700;
+  margin: 0.25rem 0 0.75rem;
+  text-shadow: 0 2px 10px rgba(80, 120, 255, 0.5);
+}
+
+.birthday-badge {
+  display: inline-block;
+  background: linear-gradient(90deg, #c4611a, #e87c2a);
+  color: #fff;
+  font-size: clamp(0.85rem, 3.5vw, 1.1rem);
+  font-weight: 800;
+  padding: 0.4rem 1.2rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(200, 100, 30, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ---------- Corps ---------- */
+.invitation-body {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ---------- Bannière secrète ---------- */
+.secret-banner {
+  background: rgba(200, 50, 20, 0.2);
+  border: 2px dashed rgba(232, 124, 42, 0.7);
+  border-radius: 12px;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  margin: 1.25rem 0;
+
+  p {
+    margin: 0;
+    color: #ffe88a;
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 6px rgba(200, 100, 0, 0.5);
+  }
+}
+
+/* ---------- Message principal ---------- */
+.main-message {
+  background: rgba(10, 20, 60, 0.55);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: 1.25rem 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(100, 140, 255, 0.25);
+}
+
+.intro,
+.info-line,
+.reminder {
+  color: #c8d8ff;
+  font-size: clamp(0.9rem, 3.8vw, 1.05rem);
+  line-height: 1.65;
+  margin: 0 0 0.75rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+  &:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 800; color: #fff; }
+}
+
+/* ---------- Détails événement ---------- */
+.event-details {
+  background: rgba(10, 20, 60, 0.55);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(200, 130, 50, 0.35);
+
+  h3 {
+    color: #ffe88a;
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+    font-weight: 800;
+    margin: 0 0 1rem;
+    text-shadow: 0 2px 10px rgba(200, 130, 30, 0.5);
+  }
+}
+
+.detail-item {
+  color: #c8d8ff;
+  font-size: clamp(0.9rem, 3.8vw, 1.05rem);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(100, 140, 255, 0.2);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+  &:last-child { border-bottom: none; }
+
+  strong { font-weight: 800; color: #fff; }
+}
+
+.detail-joke {
+  color: rgba(200, 216, 255, 0.6);
+  font-size: clamp(0.8rem, 3.2vw, 0.9rem);
+  font-style: italic;
+  border-bottom: none !important;
+}
+
+/* ---------- Boutons action ---------- */
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+/* ---------- RSVP ---------- */
+.rsvp-section {
+  background: rgba(10, 20, 60, 0.55);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(100, 140, 255, 0.25);
+  text-align: center;
+
+  h3 {
+    color: #ffe88a;
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+    font-weight: 800;
+    margin: 0 0 0.5rem;
+    text-shadow: 0 2px 10px rgba(200, 130, 30, 0.5);
+  }
+}
+
+.rsvp-fallback {
+  color: rgba(200, 216, 255, 0.6);
+  font-size: clamp(0.8rem, 3.2vw, 0.9rem);
+  font-style: italic;
+  margin: 1rem 0 0;
+  line-height: 1.5;
+}
+
+.btn-sms {
+  background: none;
+  border: none;
+  color: #ffe88a;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rsvp-message {
+  color: #c8d8ff;
+  font-size: clamp(0.85rem, 3.5vw, 1rem);
+  margin: 0 0 1rem;
+  line-height: 1.6;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.rsvp-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+/* ---------- Boutons communs ---------- */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1.25rem;
+  border: none;
+  border-radius: 12px;
+  font-size: clamp(0.95rem, 4vw, 1.05rem);
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  letter-spacing: 0.3px;
+  touch-action: manipulation;
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.btn-maps {
+  background: linear-gradient(135deg, #1a3a8a, #2a5ac0);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(40, 80, 200, 0.4);
+}
+
+.btn-calendar {
+  background: linear-gradient(135deg, #c4611a, #e87c2a);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(200, 100, 30, 0.4);
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, #1a8a4a, #27ae60);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(40, 160, 80, 0.4);
+}
+
+.btn-maybe {
+  background: linear-gradient(135deg, #c4611a, #e87c2a);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(200, 100, 30, 0.4);
+}
+
+.btn-no {
+  background: rgba(10, 20, 60, 0.5);
+  color: #c8d8ff;
+  border: 2px solid rgba(100, 140, 255, 0.4);
+  box-shadow: none;
+}
+
+/* ---------- Footer ---------- */
+.invitation-footer {
+  text-align: center;
+  padding: 1rem 0 0.5rem;
+
+  .closing-message {
+    color: #ffe88a;
+    font-size: clamp(1rem, 4.5vw, 1.2rem);
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    text-shadow: 0 2px 10px rgba(200, 130, 30, 0.5);
+  }
+
+  .signature {
+    color: rgba(200, 216, 255, 0.85);
+    font-size: clamp(0.85rem, 3.5vw, 1rem);
+    font-style: italic;
+    margin: 0;
+  }
+}
+
+/* ---------- Tablets & desktop ---------- */
+@media (min-width: 480px) {
+  .rsvp-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .btn {
+      width: auto;
+      flex: 1 1 auto;
+      min-width: 140px;
+    }
+  }
+
+  .action-buttons .btn {
+    width: auto;
+  }
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes gradientShift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+@keyframes floatConfetti {
+  0%   { transform: translateY(-60px) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0.4; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}

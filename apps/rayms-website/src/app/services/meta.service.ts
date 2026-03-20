@@ -68,6 +68,16 @@ export class MetaService {
     });
   }
 
+  setBibouBirthdayMeta() {
+    this.updatePageMeta({
+      title: `Anniversaire Surprise de Laura 🎂 - ${siteConfig.name}`,
+      description: `Tu es invité(e) à la fête d'anniversaire surprise de Laura ! Le 3 mai à midi. RSVP vite !`,
+      image: `${siteConfig.url}/invitations/bibou-birthday-portrait.webp`,
+      url: `${siteConfig.url}/bibou-birthday`,
+      type: 'website',
+    });
+  }
+
   setExpedition33Meta() {
     this.updatePageMeta({
       title: `Expedition 33 - ${siteConfig.name}`,

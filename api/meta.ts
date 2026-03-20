@@ -1,7 +1,7 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
 // Whitelist of known route paths
-const ALLOWED_PATHS = new Set(['/expedition-33']);
+const ALLOWED_PATHS = new Set(['/expedition-33', '/bibou-birthday']);
 
 /**
  * Returns the path only if it is a known safe route, otherwise returns '/'.
@@ -37,6 +37,14 @@ const getPageMeta = (path: string): PageMeta => {
         description: `À l'heure où j'écris ces lignes, je n'ai encore que 32 ans... Rejoignez avec moi l'expedition 33 pour une aventure interactive exclusive pleine de mystères et de souvenirs inoubliables.`,
         image: `${siteConfig.url}/expedition33.webp`,
         url: `${siteConfig.url}/expedition-33`,
+        type: 'website',
+      };
+    case '/bibou-birthday':
+      return {
+        title: `Anniversaire Surprise de Laura 🎂 - ${siteConfig.name}`,
+        description: `Tu es invité(e) à la fête d'anniversaire surprise de Laura ! Le 3 mai à midi. RSVP vite !`,
+        image: `${siteConfig.url}/invitations/bibou-birthday-portrait.webp`,
+        url: `${siteConfig.url}/bibou-birthday`,
         type: 'website',
       };
     default:

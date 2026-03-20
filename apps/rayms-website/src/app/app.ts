@@ -19,6 +19,8 @@ export class App implements OnInit {
   private metaService = inject(MetaService);
   private structuredDataService = inject(StructuredDataService);
 
+  private readonly hiddenRoutes = ['bibou-birthday'];
+
   // Mobile secret access properties
   private tapCount = 0;
   private tapTimer: ReturnType<typeof setTimeout> | null = null;
@@ -45,6 +47,8 @@ export class App implements OnInit {
     if (url.includes('expedition-33')) {
       this.metaService.setExpedition33Meta();
       this.structuredDataService.addEventStructuredData();
+    } else if (url.includes('bibou-birthday')) {
+      this.metaService.setBibouBirthdayMeta();
     } else {
       this.metaService.setHomeMeta();
     }
@@ -72,7 +76,7 @@ export class App implements OnInit {
     // Get all configured routes
     const routes = this.router.config;
     this.availableRoutes = routes
-      .filter((route) => route.path && route.path !== '**') // Exclude wildcard routes
+      .filter((route) => route.path && route.path !== '**' && !this.hiddenRoutes.includes(route.path)) // Exclude wildcard and hidden routes
       .map((route) => route.path as string)
       .filter((path) => path.trim() !== ''); // Exclude empty paths
 
