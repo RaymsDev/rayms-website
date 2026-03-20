@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'lib-bibou-birthday',
@@ -7,11 +8,25 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './bibou-birthday.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BibuBirthday {
-  partyDate = '3 mai 2025';
+export class BibouBirthday implements OnInit {
+  private meta = inject(Meta);
+  private title = inject(Title);
+
+  ngOnInit() {
+    this.title.setTitle('Anniversaire Surprise de Laura 🎂 - Rayms Lab');
+    this.meta.updateTag({
+      property: 'og:image',
+      content: 'https://remy.laffuge.fr/invitations/bibou-birthday-portrait.webp',
+    });
+    this.meta.updateTag({
+      property: 'twitter:image',
+      content: 'https://remy.laffuge.fr/invitations/bibou-birthday-portrait.webp',
+    });
+  }
+  partyDate = '3 mai 2026';
   partyTime = '12h00';
   address = `3 chemin d'En Fournes, 81470 Cambon-lès-Lavaur`;
-  emailAddress = 'remy.laffuge@gmail.com';
+  private readonly emailAddress = atob('cmVteS5sYWZmdWdlQGdtYWlsLmNvbQ==');
 
   googleMapsLink =
     'https://maps.google.com/maps?q=3+chemin+d%27En+Fournes,+81470+Cambon-lès-Lavaur';
@@ -38,13 +53,19 @@ ${response === 'oui' ? '\nBoissons apportées : [Précisez si vous apportez quel
     window.open(gmailUrl, '_blank');
   }
 
+  sendSms() {
+    alert(
+      "🚫 Mon numéro sur un site public ?! Certainement pas !\n\nLes vrais copains ont déjà mon numéro 😄"
+    );
+  }
+
   openGoogleMaps() {
     window.open(this.googleMapsLink, '_blank');
   }
 
   addToCalendar() {
-    const startDate = new Date('2025-05-03T12:00:00');
-    const endDate = new Date('2025-05-03T20:00:00');
+    const startDate = new Date('2026-05-03T12:00:00');
+    const endDate = new Date('2026-05-03T20:00:00');
 
     const eventDetails = {
       title: 'Anniversaire Surprise de Laura 🎂',

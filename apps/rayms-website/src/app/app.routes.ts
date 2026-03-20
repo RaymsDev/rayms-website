@@ -9,7 +9,7 @@ export const appRoutes: Route[] = [
   {
     path: 'bibou-birthday',
     loadComponent: () =>
-      import('@rayms-website/invitations').then((m) => m.BibuBirthday),
+      import('@rayms-website/invitations').then((m) => m.BibouBirthday),
   },
   {
     path: 'poymoys-and-dragons',

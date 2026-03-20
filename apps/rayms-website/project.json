@@ -18,6 +18,11 @@
           {
             "glob": "**/*",
             "input": "apps/rayms-website/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/invitations/src/img",
+            "output": "invitations"
           }
         ],
         "styles": ["apps/rayms-website/src/styles.scss"]

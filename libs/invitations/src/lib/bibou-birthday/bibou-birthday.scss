@@ -1,5 +1,5 @@
 /* =============================================
-   BIBOU BIRTHDAY — Style festif, mobile-first
+   BIBOU BIRTHDAY — Thème cosmique, mobile-first
    ============================================= */
 
 :host {
@@ -10,13 +10,26 @@
 /* ---------- Layout ---------- */
 .invitation-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #ff6b9d 0%, #ff8c42 40%, #ffd93d 70%, #ff6b9d 100%);
+  background: linear-gradient(160deg, #050515 0%, #0e1a4a 35%, #1a0a2e 60%, #2a0e0a 85%, #0a0515 100%);
   background-size: 400% 400%;
-  animation: gradientShift 8s ease infinite;
+  animation: gradientShift 12s ease infinite;
   position: relative;
   overflow: hidden;
   padding: 0 0 2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ---------- Bannière photo ---------- */
+.invitation-banner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.banner-img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* ---------- Confettis flottants ---------- */
@@ -44,9 +57,9 @@
   z-index: 1;
   text-align: center;
   padding: 2rem 1rem 1.5rem;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(6px);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.4);
+  background: rgba(10, 15, 50, 0.55);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid rgba(200, 130, 50, 0.4);
 }
 
 .title {
@@ -61,12 +74,12 @@
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #fff 0%, #ffe0f0 50%, #fff 100%);
+  background: linear-gradient(90deg, #ffe88a 0%, #f0a050 40%, #e87c2a 70%, #ffe88a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: none;
-  animation: shimmer 3s ease infinite;
+  animation: shimmer 4s ease infinite;
   background-size: 200%;
 }
 
@@ -76,21 +89,21 @@
 
 .subtitle {
   font-size: clamp(1rem, 4.5vw, 1.6rem);
-  color: #fff;
+  color: #c8d8ff;
   font-weight: 700;
   margin: 0.25rem 0 0.75rem;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 10px rgba(80, 120, 255, 0.5);
 }
 
 .birthday-badge {
   display: inline-block;
-  background: #fff;
-  color: #e63980;
+  background: linear-gradient(90deg, #c4611a, #e87c2a);
+  color: #fff;
   font-size: clamp(0.85rem, 3.5vw, 1.1rem);
   font-weight: 800;
   padding: 0.4rem 1.2rem;
   border-radius: 50px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(200, 100, 30, 0.5);
   animation: pulse 2s ease-in-out infinite;
 }
 
@@ -105,8 +118,8 @@
 
 /* ---------- Bannière secrète ---------- */
 .secret-banner {
-  background: rgba(255, 50, 50, 0.15);
-  border: 2px dashed rgba(255, 255, 255, 0.6);
+  background: rgba(200, 50, 20, 0.2);
+  border: 2px dashed rgba(232, 124, 42, 0.7);
   border-radius: 12px;
   text-align: center;
   padding: 0.75rem 1rem;
@@ -114,66 +127,73 @@
 
   p {
     margin: 0;
-    color: #fff;
+    color: #ffe88a;
     font-size: clamp(0.9rem, 4vw, 1.1rem);
     font-weight: 700;
     letter-spacing: 0.5px;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 6px rgba(200, 100, 0, 0.5);
   }
 }
 
 /* ---------- Message principal ---------- */
 .main-message {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(4px);
+  background: rgba(10, 20, 60, 0.55);
+  backdrop-filter: blur(6px);
   border-radius: 16px;
   padding: 1.25rem 1.25rem;
   margin-bottom: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(100, 140, 255, 0.25);
 }
 
 .intro,
 .info-line,
 .reminder {
-  color: #fff;
+  color: #c8d8ff;
   font-size: clamp(0.9rem, 3.8vw, 1.05rem);
   line-height: 1.65;
   margin: 0 0 0.75rem;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 
   &:last-child { margin-bottom: 0; }
 
-  strong { font-weight: 800; }
+  strong { font-weight: 800; color: #fff; }
 }
 
 /* ---------- Détails événement ---------- */
 .event-details {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(4px);
+  background: rgba(10, 20, 60, 0.55);
+  backdrop-filter: blur(6px);
   border-radius: 16px;
   padding: 1.25rem;
   margin-bottom: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(200, 130, 50, 0.35);
 
   h3 {
-    color: #fff;
+    color: #ffe88a;
     font-size: clamp(1rem, 4.5vw, 1.25rem);
     font-weight: 800;
     margin: 0 0 1rem;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 2px 10px rgba(200, 130, 30, 0.5);
   }
 }
 
 .detail-item {
-  color: #fff;
+  color: #c8d8ff;
   font-size: clamp(0.9rem, 3.8vw, 1.05rem);
   padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(100, 140, 255, 0.2);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 
   &:last-child { border-bottom: none; }
 
-  strong { font-weight: 800; }
+  strong { font-weight: 800; color: #fff; }
+}
+
+.detail-joke {
+  color: rgba(200, 216, 255, 0.6);
+  font-size: clamp(0.8rem, 3.2vw, 0.9rem);
+  font-style: italic;
+  border-bottom: none !important;
 }
 
 /* ---------- Boutons action ---------- */
@@ -187,29 +207,50 @@
 
 /* ---------- RSVP ---------- */
 .rsvp-section {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(4px);
+  background: rgba(10, 20, 60, 0.55);
+  backdrop-filter: blur(6px);
   border-radius: 16px;
   padding: 1.25rem;
   margin-bottom: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(100, 140, 255, 0.25);
   text-align: center;
 
   h3 {
-    color: #fff;
+    color: #ffe88a;
     font-size: clamp(1rem, 4.5vw, 1.25rem);
     font-weight: 800;
     margin: 0 0 0.5rem;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 2px 10px rgba(200, 130, 30, 0.5);
   }
 }
 
+.rsvp-fallback {
+  color: rgba(200, 216, 255, 0.6);
+  font-size: clamp(0.8rem, 3.2vw, 0.9rem);
+  font-style: italic;
+  margin: 1rem 0 0;
+  line-height: 1.5;
+}
+
+.btn-sms {
+  background: none;
+  border: none;
+  color: #ffe88a;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .rsvp-message {
-  color: #fff;
+  color: #c8d8ff;
   font-size: clamp(0.85rem, 3.5vw, 1rem);
   margin: 0 0 1rem;
   line-height: 1.6;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 .rsvp-buttons {
@@ -246,33 +287,33 @@
 }
 
 .btn-maps {
-  background: #fff;
-  color: #e63980;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #1a3a8a, #2a5ac0);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(40, 80, 200, 0.4);
 }
 
 .btn-calendar {
-  background: rgba(255, 255, 255, 0.85);
-  color: #ff6b00;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #c4611a, #e87c2a);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(200, 100, 30, 0.4);
 }
 
 .btn-yes {
-  background: #2ecc71;
+  background: linear-gradient(135deg, #1a8a4a, #27ae60);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
+  box-shadow: 0 4px 12px rgba(40, 160, 80, 0.4);
 }
 
 .btn-maybe {
-  background: #f39c12;
+  background: linear-gradient(135deg, #c4611a, #e87c2a);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
+  box-shadow: 0 4px 12px rgba(200, 100, 30, 0.4);
 }
 
 .btn-no {
-  background: rgba(255, 255, 255, 0.3);
-  color: #fff;
-  border: 2px solid rgba(255, 255, 255, 0.6);
+  background: rgba(10, 20, 60, 0.5);
+  color: #c8d8ff;
+  border: 2px solid rgba(100, 140, 255, 0.4);
   box-shadow: none;
 }
 
@@ -282,15 +323,15 @@
   padding: 1rem 0 0.5rem;
 
   .closing-message {
-    color: #fff;
+    color: #ffe88a;
     font-size: clamp(1rem, 4.5vw, 1.2rem);
     font-weight: 700;
     margin: 0 0 0.5rem;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 10px rgba(200, 130, 30, 0.5);
   }
 
   .signature {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(200, 216, 255, 0.85);
     font-size: clamp(0.85rem, 3.5vw, 1rem);
     font-style: italic;
     margin: 0;
@@ -318,9 +359,9 @@
 
 /* ---------- Keyframes ---------- */
 @keyframes gradientShift {
-  0%   { background-position: 0% 50%; }
+  0%   { background-position: 0%   50%; }
   50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  100% { background-position: 0%   50%; }
 }
 
 @keyframes floatConfetti {

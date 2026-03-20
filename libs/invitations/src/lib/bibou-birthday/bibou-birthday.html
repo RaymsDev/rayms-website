@@ -1,24 +1,33 @@
 <div class="invitation-container">
-  <!-- Confettis flottants -->
-  <div class="confetti confetti-1">🎊</div>
-  <div class="confetti confetti-2">🎈</div>
-  <div class="confetti confetti-3">🎉</div>
-  <div class="confetti confetti-4">🎊</div>
-  <div class="confetti confetti-5">🎈</div>
-  <div class="confetti confetti-6">🎉</div>
-  <div class="confetti confetti-7">🎊</div>
-  <div class="confetti confetti-8">🎈</div>
+  <!-- Bannière photo -->
+  <div class="invitation-banner">
+    <img
+      src="/invitations/bibou-birthday-banner.webp"
+      alt="Anniversaire de Laura"
+      class="banner-img"
+    />
+  </div>
+
+  <!-- Étoiles flottantes -->
+  <div class="confetti confetti-1">⭐</div>
+  <div class="confetti confetti-2">🌟</div>
+  <div class="confetti confetti-3">✨</div>
+  <div class="confetti confetti-4">💫</div>
+  <div class="confetti confetti-5">⭐</div>
+  <div class="confetti confetti-6">🌟</div>
+  <div class="confetti confetti-7">✨</div>
+  <div class="confetti confetti-8">💫</div>
 
   <!-- En-tête -->
   <header class="invitation-header">
     <h1 class="title">
-      <span class="emoji">🎂</span>
+      <span class="emoji">🚀</span>
       <span class="gradient-text">Anniversaire Surprise</span>
-      <span class="emoji">🎂</span>
+      <span class="emoji">🚀</span>
     </h1>
-    <h2 class="subtitle">La Fête de Laura !</h2>
+    <h2 class="subtitle">La Fête Intergalactique de Laura !</h2>
     <div class="birthday-badge">
-      <span>🎉 Le 3 Mai — Midi 🎉</span>
+      <span>🌕 Le 3 Mai — Midi 🌕</span>
     </div>
   </header>
 
@@ -26,99 +35,85 @@
   <main class="invitation-body">
     <!-- Message secret -->
     <div class="secret-banner">
-      <p>🤫 <strong>SECRET DÉFENSE</strong> — Ne rien dire à Laura !</p>
+      <p>
+        🤫 <strong>MISSION CLASSIFIÉE</strong> — Même la NASA n'est pas au courant. Ne rien dire à Laura !
+      </p>
     </div>
 
     <!-- Message principal -->
     <div class="main-message">
       <p class="intro">
-        Salut ! 👋 Je t'invite à la <strong>fête d'anniversaire surprise</strong> de ma chérie Laura !
-        On va lui faire une belle surprise pour son anniversaire 🥳
+        Salut ! 👋 Tu es sélectionné(e) pour rejoindre la <strong>mission la plus secrète de la galaxie</strong> : la fête
+        d'anniversaire surprise de ma chérie Laura, <strong>AKA Bibou</strong> — astronaute en chef de mon cœur 🥳🚀
       </p>
 
       <p class="info-line">
-        🍻 <strong>Côté boissons :</strong> Je m'occupe d'une bonne partie,
-        mais les volontaires sont les bienvenus pour ramener leurs boissons préférées !
+        🍻 <strong>Ravitaillement spatial :</strong> Je m'occupe du carburant de base, mais les co-pilotes motivés sont
+        bienvenus pour ramener leurs boissons préférées — même sur la Lune, on trinque !
       </p>
 
       <p class="info-line">
-        🎁 <strong>Côté cadeau :</strong> Je suis en train d'organiser un cadeau groupé,
+        🎁 <strong>Cadeau cosmique :</strong> Je suis en train d'organiser un cadeau groupé digne d'un lancement Apollo,
         je vous tiens au courant très vite !
       </p>
 
       <p class="reminder">
-        📵 Pensez à mettre le groupe en <strong>silencieux</strong> pour éviter qu'une
-        notification ne trahisse la surprise si elle vous voit !
+        🤐 <strong>Évitez de parler de la fête</strong> dans les conversations de groupe où elle est présente —
+        une indiscrétion et la mission est compromise. Houston, on aurait un problème. 🛸
       </p>
     </div>
 
     <!-- Détails de l'événement -->
     <section class="event-details">
-      <h3>📅 Détails de la Fête</h3>
-      <div class="detail-item"><strong>📅 Date :</strong> {{ partyDate }}</div>
-      <div class="detail-item"><strong>🕛 Heure :</strong> {{ partyTime }}</div>
-      <div class="detail-item"><strong>📍 Adresse :</strong> {{ address }}</div>
+      <h3>🛰️ Coordonnées de la Mission</h3>
+      <div class="detail-item"><strong>📅 Date de lancement :</strong> {{ partyDate }}</div>
+      <div class="detail-item"><strong>🕛 Heure T-0 :</strong> {{ partyTime }}</div>
+      <div class="detail-item"><strong>📍 Base spatiale :</strong> {{ address }}</div>
+      <div class="detail-item detail-joke">
+        <em>🌍 Distance depuis la Terre : environ 0 km. La fête est bien sur Terre, rassurez-vous.</em>
+      </div>
     </section>
 
     <!-- Boutons d'action -->
     <section class="action-buttons">
-      <button
-        class="btn btn-maps"
-        (click)="openGoogleMaps()"
-        title="Voir l'adresse sur Google Maps"
-      >
-        🗺️ Voir sur Google Maps
+      <button class="btn btn-maps" (click)="openGoogleMaps()" title="Voir l'adresse sur Google Maps">
+        🗺️ Tracer la trajectoire
       </button>
 
-      <button
-        class="btn btn-calendar"
-        (click)="addToCalendar()"
-        title="Ajouter l'événement à votre agenda"
-      >
-        📅 Ajouter à l'Agenda
+      <button class="btn btn-calendar" (click)="addToCalendar()" title="Ajouter l'événement à votre agenda">
+        📅 Bloquer le créneau orbital
       </button>
     </section>
 
     <!-- Section RSVP -->
     <section class="rsvp-section">
-      <h3>🎯 Dis-moi si tu viens !</h3>
+      <h3>📡 Confirmez votre présence !</h3>
       <p class="rsvp-message">
-        Réponds vite pour que je puisse tout organiser dans les meilleures conditions !
-        Précise aussi combien vous serez 😁
+        Mission Control a besoin de savoir combien de cosmonautes seront à bord ! Répondez vite — les places dans la
+        fusée sont limitées 🚀
       </p>
 
       <div class="rsvp-buttons">
-        <button
-          class="btn btn-yes"
-          (click)="onRsvp('oui')"
-          title="Je viens à la fête !"
-        >
-          ✅ Oui, on sera là !
+        <button class="btn btn-yes" (click)="onRsvp('oui')" title="Je viens à la fête !">
+          🚀 Décollage confirmé !
         </button>
 
-        <button
-          class="btn btn-maybe"
-          (click)="onRsvp('peut-etre')"
-          title="Je ne suis pas sûr(e)"
-        >
-          🤔 Peut-être
+        <button class="btn btn-maybe" (click)="onRsvp('peut-etre')" title="Je ne suis pas sûr(e)">
+          🛸 En orbite de réflexion…
         </button>
 
-        <button
-          class="btn btn-no"
-          (click)="onRsvp('non')"
-          title="Je ne peux pas venir"
-        >
-          ❌ Non, désolé(e)
-        </button>
+        <button class="btn btn-no" (click)="onRsvp('non')" title="Je ne peux pas venir">🌑 Mission annulée</button>
       </div>
+
+      <p class="rsvp-fallback">
+        👽 Si les boutons ne répondent pas, c'est probablement un coup des extraterrestres —
+        envoie-moi un <button class="btn-sms" (click)="sendSms()">SMS</button> dans ce cas !
+      </p>
     </section>
 
     <footer class="invitation-footer">
-      <p class="closing-message">
-        🎊 Hâte de fêter ça avec vous tous ! 🎊
-      </p>
-      <p class="signature">On va lui faire une surprise inoubliable ! 🥳✨</p>
+      <p class="closing-message">🌌 Que la force (et le gâteau) soit avec vous ! 🌌</p>
+      <p class="signature">À très vite pour la plus belle fête de la galaxie ! 🥳✨</p>
     </footer>
   </main>
 </div>
