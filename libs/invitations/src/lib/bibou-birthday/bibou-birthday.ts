@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'lib-bibou-birthday',
@@ -8,27 +7,13 @@ import { Meta, Title } from '@angular/platform-browser';
   styleUrl: './bibou-birthday.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BibouBirthday implements OnInit {
-  private meta = inject(Meta);
-  private title = inject(Title);
-
-  ngOnInit() {
-    this.title.setTitle('Anniversaire Surprise de Laura 🎂 - Rayms Lab');
-    this.meta.updateTag({
-      property: 'og:image',
-      content: 'https://remy.laffuge.fr/invitations/bibou-birthday-portrait.webp',
-    });
-    this.meta.updateTag({
-      property: 'twitter:image',
-      content: 'https://remy.laffuge.fr/invitations/bibou-birthday-portrait.webp',
-    });
-  }
-  partyDate = '3 mai 2026';
-  partyTime = '12h00';
-  address = `3 chemin d'En Fournes, 81470 Cambon-lès-Lavaur`;
+export class BibouBirthday {
+  readonly partyDate = '3 mai 2026';
+  readonly partyTime = '12h00';
+  readonly address = `3 chemin d'En Fournes, 81470 Cambon-lès-Lavaur`;
   private readonly emailAddress = atob('cmVteS5sYWZmdWdlQGdtYWlsLmNvbQ==');
 
-  googleMapsLink =
+  readonly googleMapsLink =
     'https://maps.google.com/maps?q=3+chemin+d%27En+Fournes,+81470+Cambon-lès-Lavaur';
 
   onRsvp(response: 'oui' | 'non' | 'peut-etre') {

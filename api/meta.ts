@@ -43,7 +43,7 @@ const getPageMeta = (path: string): PageMeta => {
       return {
         title: `Anniversaire Surprise de Laura 🎂 - ${siteConfig.name}`,
         description: `Tu es invité(e) à la fête d'anniversaire surprise de Laura ! Le 3 mai à midi. RSVP vite !`,
-        image: siteConfig.ogImage,
+        image: `${siteConfig.url}/invitations/bibou-birthday-portrait.webp`,
         url: `${siteConfig.url}/bibou-birthday`,
         type: 'website',
       };
