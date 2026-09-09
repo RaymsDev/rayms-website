@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ContactService } from '../services/contact.service';
 
 @Component({
   selector: 'lib-bibou-birthday',
@@ -8,10 +9,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BibouBirthday {
+  private readonly contactService = inject(ContactService);
+
   readonly partyDate = '3 mai 2026';
   readonly partyTime = '12h00';
   readonly address = `3 chemin d'En Fournes, 81470 Cambon-lès-Lavaur`;
-  private readonly emailAddress = atob('cmVteS5sYWZmdWdlQGdtYWlsLmNvbQ==');
+  private readonly emailAddress = this.contactService.getEmail();
 
   readonly googleMapsLink =
     'https://maps.google.com/maps?q=3+chemin+d%27En+Fournes,+81470+Cambon-lès-Lavaur';

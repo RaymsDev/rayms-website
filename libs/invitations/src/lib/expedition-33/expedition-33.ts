@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ContactService } from '../services/contact.service';
 
 @Component({
   selector: 'lib-expedition-33',
@@ -8,10 +9,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Expedition33 {
+  private readonly contactService = inject(ContactService);
+
   partyDate = '1 novembre 2025';
   partyTime = '12h00';
   address = `3 chemin d'En Fournes, 81470 Cambon-lès-Lavaur`;
-  private readonly emailAddress = atob('cmVteS5sYWZmdWdlQGdtYWlsLmNvbQ==');
+  private readonly emailAddress = this.contactService.getEmail();
 
   googleMapsLink =
     'https://maps.google.com/maps?q=3+chemin+d%27En+Fournes,+81470+Cambon-lès-Lavaur';
