@@ -51,6 +51,9 @@ export class App implements OnInit {
       this.structuredDataService.addEventStructuredData();
     } else if (url.includes('bibou-birthday')) {
       this.metaService.setBibouBirthdayMeta();
+    } else if (url.includes('halloween-lunch')) {
+      this.metaService.setHalloweenLunchMeta();
+      this.structuredDataService.addHalloweenLunchStructuredData();
     } else {
       this.metaService.setHomeMeta();
     }
