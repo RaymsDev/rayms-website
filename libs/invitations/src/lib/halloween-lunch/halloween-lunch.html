@@ -1,0 +1,173 @@
+<div class="invitation-container">
+  <!-- Bannière photo -->
+  <div class="invitation-banner">
+    <img
+      src="/invitations/haunted_house.jpg"
+      alt="Maison hantée"
+      class="banner-img"
+    />
+  </div>
+
+  <!-- Brume flottante -->
+  <div class="confetti confetti-1">🕸️</div>
+  <div class="confetti confetti-2">🦇</div>
+  <div class="confetti confetti-3">👻</div>
+  <div class="confetti confetti-4">🕷️</div>
+  <div class="confetti confetti-5">🦇</div>
+  <div class="confetti confetti-6">🕸️</div>
+  <div class="confetti confetti-7">👻</div>
+  <div class="confetti confetti-8">🕷️</div>
+
+  <!-- En-tête -->
+  <header class="invitation-header">
+    <h1 class="title">
+      <span class="emoji">🎃</span>
+      <span class="gradient-text">Déjeuner Déguisé Horreur</span>
+      <span class="emoji">🎃</span>
+    </h1>
+    <h2 class="subtitle">35 bougies, et déjà hanté(e) pour la vie</h2>
+    <div class="birthday-badge">
+      <span>💀 {{ partyDate }} — {{ partyTime }} 💀</span>
+    </div>
+  </header>
+
+  <!-- Corps principal -->
+  <main class="invitation-body">
+    <!-- Message secret -->
+    <div class="secret-banner">
+      <p>
+        🤫 <strong>MISE EN GARDE</strong> — Ce déjeuner est classé « horreur », mais rassurez-vous : il a lieu à midi,
+        en plein jour, précisément parce que des enfants seront de la partie. Les vrais monstres ne sortent que le
+        soir.
+      </p>
+    </div>
+
+    <!-- Message principal -->
+    <section class="main-message">
+      <p class="intro">
+        Salut ! 👋 Tu es cordialement <strong>convoqué(e)</strong> à un déjeuner déguisé placé sous le signe de
+        l'horreur (et du gâteau).
+      </p>
+      <p class="info-line">
+        Officiellement, je n'ai « encore » que 35 ans. Officieusement, quelque chose d'ancien et de terrible s'est
+        réveillé le jour de ma naissance, et il réclame un déguisement en son honneur.
+      </p>
+      <p class="reminder">
+        🎭 Le thème est <strong>horreur générique</strong> : maison hantée, ambiance gothique, mystique ou
+        franchement flippante — à vous de choisir votre camp, tant que ça fait peur (gentiment).
+      </p>
+    </section>
+
+    <!-- Détails événement -->
+    <section class="event-details">
+      <h3>📋 Les détails qui font frissonner</h3>
+      <div class="detail-item"><strong>📅 Date :</strong> {{ partyDate }}</div>
+      <div class="detail-item"><strong>🕛 Heure :</strong> {{ partyTime }} (oui, midi — voir mise en garde ci-dessus)</div>
+      <div class="detail-item"><strong>📍 Lieu :</strong> {{ address }}</div>
+      <div class="detail-item detail-joke">
+        <em>🌑 Ambiance garantie même en plein soleil.</em>
+      </div>
+    </section>
+
+    <!-- Idées costumes -->
+    <section class="action-buttons">
+      <button class="btn btn-maps" (click)="openGoogleMaps()" title="Voir l'adresse sur Google Maps">
+        🗺️ Trouver le repaire
+      </button>
+
+      <button class="btn btn-calendar" (click)="addToCalendar()" title="Ajouter l'événement à votre agenda">
+        📅 Réserver le créneau maudit
+      </button>
+
+      <button class="btn btn-costume" (click)="openCosplayIdeas()" title="Idées de déguisement sur Pinterest">
+        🎭 Idées costumes (Pinterest)
+      </button>
+
+      <button class="btn btn-costume" (click)="openInstagramCosplay()" title="Idées de déguisement sur Instagram">
+        📸 Idées costumes (Instagram)
+      </button>
+    </section>
+
+    <!-- Section RSVP -->
+    <section class="rsvp-section">
+      <h3>🔮 Confirmez votre présence !</h3>
+      <p class="rsvp-message">
+        La crypte a besoin de savoir combien de convives viendront hanter la table. Répondez par mail ou par SMS,
+        les deux fonctionnent aussi bien l'un que l'autre.
+      </p>
+
+      <div class="rsvp-buttons">
+        <div class="rsvp-pair">
+          <span class="rsvp-pair-label">🎉 Oui, je viens</span>
+          <div class="rsvp-pair-actions">
+            <button
+              class="btn btn-yes"
+              (click)="onRsvpMail('oui')"
+              aria-label="Répondre oui par mail"
+              title="Répondre oui par mail"
+            >
+              ✉️
+            </button>
+            <button
+              class="btn btn-yes"
+              (click)="onRsvpSms('oui')"
+              aria-label="Répondre oui par SMS"
+              title="Répondre oui par SMS"
+            >
+              💬
+            </button>
+          </div>
+        </div>
+
+        <div class="rsvp-pair">
+          <span class="rsvp-pair-label">🤔 Peut-être</span>
+          <div class="rsvp-pair-actions">
+            <button
+              class="btn btn-maybe"
+              (click)="onRsvpMail('peut-etre')"
+              aria-label="Répondre peut-être par mail"
+              title="Répondre peut-être par mail"
+            >
+              ✉️
+            </button>
+            <button
+              class="btn btn-maybe"
+              (click)="onRsvpSms('peut-etre')"
+              aria-label="Répondre peut-être par SMS"
+              title="Répondre peut-être par SMS"
+            >
+              💬
+            </button>
+          </div>
+        </div>
+
+        <div class="rsvp-pair">
+          <span class="rsvp-pair-label">👻 Non, je décline</span>
+          <div class="rsvp-pair-actions">
+            <button
+              class="btn btn-no"
+              (click)="onRsvpMail('non')"
+              aria-label="Répondre non par mail"
+              title="Répondre non par mail"
+            >
+              ✉️
+            </button>
+            <button
+              class="btn btn-no"
+              (click)="onRsvpSms('non')"
+              aria-label="Répondre non par SMS"
+              title="Répondre non par SMS"
+            >
+              💬
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="invitation-footer">
+      <p class="closing-message">🎃 Que la peur (et le gâteau) soit avec vous ! 🎃</p>
+      <p class="signature">À très vite pour cette fête qui hante déjà mes 35 ans.</p>
+    </footer>
+  </main>
+</div>

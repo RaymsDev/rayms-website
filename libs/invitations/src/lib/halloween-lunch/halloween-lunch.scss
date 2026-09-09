@@ -1,0 +1,389 @@
+/* =============================================
+   HALLOWEEN LUNCH — Thème horreur-comique, mobile-first
+   ============================================= */
+
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+/* ---------- Layout ---------- */
+.invitation-container {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #0a0508 0%, #1a0a1e 35%, #2a0a3e 60%, #3a1505 85%, #0a0508 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+  position: relative;
+  overflow: hidden;
+  padding: 0 0 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ---------- Bannière photo ---------- */
+.invitation-banner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.banner-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- Brume flottante ---------- */
+.confetti {
+  position: fixed;
+  font-size: 1.5rem;
+  animation: floatConfetti linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+}
+
+.confetti-1 { left: 5%;  animation-duration: 6s;   animation-delay: 0s;   top: -50px; }
+.confetti-2 { left: 15%; animation-duration: 8s;   animation-delay: 1s;   top: -50px; }
+.confetti-3 { left: 30%; animation-duration: 7s;   animation-delay: 2s;   top: -50px; }
+.confetti-4 { left: 50%; animation-duration: 5s;   animation-delay: 0.5s; top: -50px; }
+.confetti-5 { left: 65%; animation-duration: 9s;   animation-delay: 3s;   top: -50px; }
+.confetti-6 { left: 75%; animation-duration: 6.5s; animation-delay: 1.5s; top: -50px; }
+.confetti-7 { left: 85%; animation-duration: 7.5s; animation-delay: 2.5s; top: -50px; }
+.confetti-8 { left: 95%; animation-duration: 8.5s; animation-delay: 3.5s; top: -50px; }
+
+/* ---------- Corps ---------- */
+.invitation-body {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ---------- Bannière avertissement ---------- */
+.secret-banner {
+  background: rgba(140, 30, 20, 0.25);
+  border: 2px dashed rgba(232, 124, 42, 0.7);
+  border-radius: 12px;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  margin: 1.25rem 0;
+
+  p {
+    margin: 0;
+    color: #ffb84d;
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 6px rgba(140, 30, 20, 0.5);
+  }
+}
+
+/* ---------- Message principal ---------- */
+.main-message {
+  background: rgba(30, 10, 45, 0.55);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(150, 90, 220, 0.25);
+}
+
+.intro,
+.info-line,
+.reminder {
+  color: #d8c8ff;
+  font-size: clamp(0.9rem, 3.8vw, 1.05rem);
+  line-height: 1.65;
+  margin: 0 0 0.75rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  strong {
+    font-weight: 800;
+    color: #fff;
+  }
+}
+
+/* ---------- Détails événement ---------- */
+.event-details {
+  background: rgba(30, 10, 45, 0.55);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(232, 124, 42, 0.35);
+
+  h3 {
+    color: #ffb84d;
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+    font-weight: 800;
+    margin: 0 0 1rem;
+    text-shadow: 0 2px 10px rgba(140, 30, 20, 0.5);
+  }
+}
+
+.detail-item {
+  color: #d8c8ff;
+  font-size: clamp(0.85rem, 3.6vw, 1rem);
+  line-height: 1.7;
+
+  strong {
+    color: #fff;
+  }
+}
+
+.detail-joke {
+  color: rgba(216, 200, 255, 0.7);
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* ---------- Boutons action ---------- */
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+/* ---------- RSVP ---------- */
+.rsvp-section {
+  background: rgba(30, 10, 45, 0.55);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(150, 90, 220, 0.25);
+  text-align: center;
+
+  h3 {
+    color: #ffb84d;
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+    font-weight: 800;
+    margin: 0 0 0.5rem;
+    text-shadow: 0 2px 10px rgba(140, 30, 20, 0.5);
+  }
+}
+
+.rsvp-message {
+  color: #d8c8ff;
+  font-size: clamp(0.85rem, 3.5vw, 1rem);
+  margin: 0 0 1rem;
+  line-height: 1.6;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.rsvp-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Each response (oui / peut-être / non) is grouped as one pair: a label
+   plus its mail+SMS buttons, so the six RSVP buttons stay legible on
+   mobile instead of forming two separate blocks. */
+.rsvp-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.rsvp-pair-label {
+  color: #ffb84d;
+  font-weight: 700;
+  font-size: clamp(0.9rem, 3.8vw, 1rem);
+}
+
+.rsvp-pair-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.rsvp-pair-actions .btn {
+  flex: 1 1 0;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  font-size: 1.3rem;
+}
+
+/* ---------- Boutons communs ---------- */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1.25rem;
+  border: none;
+  border-radius: 12px;
+  font-size: clamp(0.95rem, 4vw, 1.05rem);
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  letter-spacing: 0.3px;
+  touch-action: manipulation;
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.btn-maps {
+  background: linear-gradient(135deg, #4a1a8a, #7a2ac0);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(90, 40, 200, 0.4);
+}
+
+.btn-calendar {
+  background: linear-gradient(135deg, #c4611a, #e87c2a);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(200, 100, 30, 0.4);
+}
+
+.btn-costume {
+  background: rgba(30, 10, 45, 0.5);
+  color: #d8c8ff;
+  border: 2px solid rgba(150, 90, 220, 0.4);
+  box-shadow: none;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, #1a8a4a, #27ae60);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(40, 160, 80, 0.4);
+}
+
+.btn-maybe {
+  background: linear-gradient(135deg, #c4611a, #e87c2a);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(200, 100, 30, 0.4);
+}
+
+.btn-no {
+  background: rgba(30, 10, 45, 0.5);
+  color: #d8c8ff;
+  border: 2px solid rgba(150, 90, 220, 0.4);
+  box-shadow: none;
+}
+
+/* ---------- Footer ---------- */
+.invitation-footer {
+  text-align: center;
+  padding: 1rem 0 0.5rem;
+
+  .closing-message {
+    color: #ffb84d;
+    font-size: clamp(1rem, 4.5vw, 1.2rem);
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    text-shadow: 0 2px 10px rgba(140, 30, 20, 0.5);
+  }
+
+  .signature {
+    color: rgba(216, 200, 255, 0.85);
+    font-size: clamp(0.85rem, 3.5vw, 1rem);
+    font-style: italic;
+    margin: 0;
+  }
+}
+
+/* ---------- Header ---------- */
+.invitation-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 1.5rem 1rem 0.5rem;
+
+  .title {
+    margin: 0;
+    font-size: clamp(1.5rem, 6.5vw, 2.25rem);
+    font-weight: 900;
+
+    .emoji {
+      display: inline-block;
+    }
+  }
+
+  .gradient-text {
+    background: linear-gradient(90deg, #ff8a3d, #b84dff, #ff8a3d);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+
+  .subtitle {
+    color: #d8c8ff;
+    font-size: clamp(0.95rem, 4vw, 1.15rem);
+    font-weight: 500;
+    margin: 0.4rem 0 0.75rem;
+  }
+
+  .birthday-badge {
+    display: inline-block;
+    background: rgba(140, 30, 20, 0.3);
+    border: 1px solid rgba(232, 124, 42, 0.5);
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
+    color: #ffb84d;
+    font-weight: 700;
+    font-size: clamp(0.85rem, 3.6vw, 1rem);
+    animation: pulse 3s ease-in-out infinite;
+  }
+}
+
+/* ---------- Tablets & desktop ---------- */
+@media (min-width: 480px) {
+  .rsvp-pair {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .rsvp-pair-actions {
+    width: auto;
+  }
+
+  .action-buttons .btn {
+    width: auto;
+  }
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes gradientShift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+@keyframes floatConfetti {
+  0%   { transform: translateY(-60px) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0.4; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
