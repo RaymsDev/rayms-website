@@ -8,11 +8,15 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/rayms-website",
         "browser": "apps/rayms-website/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/rayms-website/tsconfig.app.json",
         "assets": [
           {
@@ -25,7 +29,9 @@
             "output": "invitations"
           }
         ],
-        "styles": ["apps/rayms-website/src/styles.scss"]
+        "styles": [
+          "apps/rayms-website/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -75,9 +81,11 @@
     },
     "test": {
       "executor": "@nx/vitest:test",
-      "outputs": ["{options.reportsDirectory}"],
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
       "options": {
-        "reportsDirectory": "../../coverage/apps/rayms-website"
+        "reportsDirectory": "{projectRoot}/../../coverage/apps/rayms-website"
       }
     },
     "serve-static": {
