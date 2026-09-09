@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -108,6 +108,8 @@ import { RouterModule } from '@angular/router';
       }
     `,
   ],
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- pre-existing component kept on its original (pre-Angular-22 default) change detection strategy by the Angular 22 migration; not switching to OnPush here to avoid a behavioral change to rendering (out of scope for this dependency migration)
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RouterModule],
 })
 export class HomeComponent {}
