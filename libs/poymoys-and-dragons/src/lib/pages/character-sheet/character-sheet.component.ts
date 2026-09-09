@@ -2,7 +2,7 @@
 // Displays a single character's full sheet.
 // Handles HP tracking and spell slot toggling via local component state.
 
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { CampaignService, Character } from '../../services/campaign.service';
@@ -12,6 +12,8 @@ import { CampaignService, Character } from '../../services/campaign.service';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './character-sheet.component.html',
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- pre-existing component kept on its original (pre-Angular-22 default) change detection strategy by the Angular 22 migration; not switching to OnPush here to avoid a behavioral change to rendering (out of scope for this dependency migration)
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./character-sheet.component.scss'],
 })
 export class CharacterSheetComponent implements OnInit {

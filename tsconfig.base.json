@@ -19,7 +19,12 @@
       "@rayms-website/poymoys-and-dragons": [
         "libs/poymoys-and-dragons/src/index.ts"
       ]
-    }
+    },
+    "strict": false,
+    "noUncheckedSideEffectImports": false,
+    "types": ["*"],
+    "esModuleInterop": false,
+    "ignoreDeprecations": "6.0"
   },
   "exclude": ["node_modules", "tmp"]
 }
