@@ -47,7 +47,7 @@ Ma réponse : ${response.toUpperCase()}
 
 ${
   response === 'oui'
-    ? "J'ai hâte de venir déguisé(e) affronter les 35 ans qui te hantent désormais ! 🎃"
+    ? "J'ai hâte de venir déguisé(e) affronter les 34 ans qui te hantent désormais ! 🎃"
     : ''
 }
 
@@ -100,8 +100,8 @@ Cordialement
     const endDate = new Date('2026-10-31T18:00:00');
 
     const eventDetails = {
-      title: 'Déjeuner déguisé Halloween - 35 ans hantés',
-      description: `Déjeuner d'anniversaire déguisé sur le thème de l'horreur. Venez déguisés (les enfants aussi) ! 🎃💀\n\nAdresse: ${this.address}\n\nContact: ${this.email}`,
+      title: `Anniversaire d'Halloween - 34 ans hantés de Rémy`,
+      description: `Déjeuner d'anniversaire déguisé sur le thème de l'horreur. Venez déguisés (les enfants aussi) ! 🎃💀\n\nAdresse: ${this.address}\n\nContact: ${this.phone}`,
       location: this.address,
       start: startDate.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
       end: endDate.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
