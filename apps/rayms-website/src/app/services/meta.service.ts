@@ -87,4 +87,14 @@ export class MetaService {
       type: 'website',
     });
   }
+
+  setHalloweenLunchMeta() {
+    this.updatePageMeta({
+      title: `Déjeuner Déguisé Horreur 🎃 - ${siteConfig.name}`,
+      description: `Officiellement, je n'ai encore que 35 ans... Rejoignez-moi pour un déjeuner déguisé sur le thème de l'horreur, le 31 octobre 2026 à midi.`,
+      image: `${siteConfig.url}/invitations/haunted_house.jpg`,
+      url: `${siteConfig.url}/halloween-lunch`,
+      type: 'website',
+    });
+  }
 }

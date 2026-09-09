@@ -36,4 +36,26 @@ export class StructuredDataService {
 
     this.addStructuredData(eventData);
   }
+
+  addHalloweenLunchStructuredData() {
+    const eventData = {
+      '@context': 'https://schema.org',
+      '@type': 'Event',
+      name: 'Déjeuner Déguisé Horreur',
+      description:
+        "Officiellement, je n'ai encore que 35 ans... Rejoignez-moi pour un déjeuner déguisé sur le thème de l'horreur, le 31 octobre 2026 à midi.",
+      url: `${siteConfig.url}/halloween-lunch`,
+      image: `${siteConfig.url}/invitations/haunted_house.jpg`,
+      organizer: {
+        '@type': 'Organization',
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
+      eventStatus: 'https://schema.org/EventScheduled',
+      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      startDate: '2026-10-31T12:00:00+01:00',
+    };
+
+    this.addStructuredData(eventData);
+  }
 }
